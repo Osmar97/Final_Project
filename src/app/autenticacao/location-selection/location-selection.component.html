@@ -1,0 +1,39 @@
+<div class="principal">
+    <div class="imagemDesktop">
+        <div class="capaCastanha">
+
+            <div class="logotipo">
+                <img src="../../../assets/icon branco.svg" alt="">
+                <p class="logoText">USHARE</p>
+            </div>
+
+            <p class="slogan">Partilhe e encontre recursos na sua Comunidade</p>
+        </div>
+
+    </div>
+
+    <div class="formulario">
+    
+        <div class="textoLogin">
+            <h1>ENCONTRE E PARTILHE RECURSOS</h1>
+        </div>
+
+
+        <div class="form">
+            <mat-form-field class="matForm">
+                <mat-label>TIPO DE UTILIZADOR</mat-label>
+                <mat-select>
+                    @for (distrito of distritos; track distrito) {
+                    <mat-option [value]="distrito.value">{{distrito.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="submeter">Continuar</div>
+        <div class="fazerLogin">
+            <p class="p1">Já tem conta</p>
+            <p class="p2">Fazer login</p>
+        </div>
+    </div>
+</div>

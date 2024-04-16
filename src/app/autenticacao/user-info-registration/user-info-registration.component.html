@@ -1,0 +1,38 @@
+<div class="principal">
+    <div class="imagemDesktop">
+        <div class="capaCastanha">
+            <div class="logotipo">
+                <img src="../../../assets/icon branco.svg" alt="">
+                <p class="logoText">USHARE</p>
+            </div>
+            <p class="slogan">Partilhe e encontre recursos na sua Comunidade</p>
+        </div>
+    </div>
+
+    <div class="formulario">
+        <div class="logotipo">
+            <img src="../../../assets/icon castanho.svg" alt="">
+            <p class="logoText">USHARE</p>
+        </div>
+        <div class="textoLogin">
+            <h1>Registrar</h1>
+            <div class="linha"></div>
+        </div>
+        <div class="form">
+            <mat-form-field class="matForm">
+                <mat-label>TIPO DE UTILIZADOR</mat-label>
+                <mat-select>
+                    @for (usuario of usuarios; track usuario) {
+                    <mat-option [value]="usuario.value">{{usuario.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <input type="text" placeholder="Nome">
+            <input type="numbers" placeholder="NIF">
+        </div>
+        <div class="botoesForm">
+            <div class="voltar"> Voltar</div>
+            <div class="submeter">Continuar</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+$primaria-cor: #955E42;
+$branca-cor: #FFFFFF;
+$verde-cor: #52D997;
+$amarelo-cor: #ffc107;
+$vermelho-cor: #dc3545;
+$preto-cor:#000000;
+$texto-normal-cor:#505153;
+$texto-pequeno-cor:#C0C5CF;
+$borda-cor:#828282;
+$icone-cinza-cor:#AEAEAE; 
+$circulo-cinza-cor:#D9D9D9; 
+
+// Function to set transparency in colors
+@function transparentize($color, $alpha: 1) {
+  @return rgba($color, $alpha);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400; /* You can change the weight if you need */
+    src: url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_cJD3gTD_u50.woff2') format('woff2'); /* You may need to update the URL with the correct path to the font file */
+  }
+
+
+  body {
+    font-family: 'Montserrat', sans-serif; /* Fallback to sans-serif if Montserrat isn't available */
+  }
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
