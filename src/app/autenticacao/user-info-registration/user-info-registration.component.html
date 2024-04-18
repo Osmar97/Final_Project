@@ -19,13 +19,13 @@
             <div class="linha"></div>
         </div>
         <div class="form">
-            <mat-form-field class="matForm">
-                <mat-label>TIPO DE UTILIZADOR</mat-label>
+            <p class="campotipo">TIPO DE UTILIZADOR</p>
+            <mat-form-field>
                 <mat-select>
                     @for (usuario of usuarios; track usuario) {
                     <mat-option [value]="usuario.value">{{usuario.viewValue}}</mat-option>
                     }
-                </mat-select>
+            </mat-select>
             </mat-form-field>
             <input type="text" placeholder="Nome">
             <input type="numbers" placeholder="NIF">

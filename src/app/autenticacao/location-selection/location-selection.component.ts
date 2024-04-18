@@ -8,7 +8,10 @@ interface Distrito {
   value: string;
   viewValue: string;
 }
-
+interface Municipio {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-location-selection',
   standalone: true,
@@ -39,6 +42,13 @@ export class LocationSelectionComponent {
     { value: 'viseu', viewValue: 'Viseu' },
     { value: 'acores', viewValue: 'Açores' },
     { value: 'madeira', viewValue: 'Madeira' }
+  ];
+  municipios: Municipio[] = [
+    { value: 'abrantes', viewValue: 'Abrantes' },
+    { value: 'agueda', viewValue: 'Águeda' },
+    { value: 'aguiar-da-beira', viewValue: 'Aguiar da Beira' },
+    { value: 'alarcao', viewValue: 'Alarção' },
+    { value: 'alcacovas', viewValue: 'Alcacovas' },
   ];
 }
 

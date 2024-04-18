@@ -7,8 +7,8 @@ $preto-cor:#000000;
 $texto-normal-cor:#505153;
 $texto-pequeno-cor:#C0C5CF;
 $borda-cor:#828282;
-$icone-cinza-cor:#AEAEAE; 
-$circulo-cinza-cor:#D9D9D9; 
+$icone-cinza-cor:#AEAEAE;
+$circulo-cinza-cor:#D9D9D9;
 
 // Function to set transparency in colors
 @function transparentize($color, $alpha: 1) {
@@ -121,12 +121,16 @@ $circulo-cinza-cor:#D9D9D9;
                 background-color: $primaria-cor;
             }
         }
-        .form{
+        .form {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            
-            
+
+            .campotipo{
+                margin-bottom: -10px;
+                color: $texto-normal-cor;
+            }
+
             input{
                 border: 1px solid $borda-cor;
                 border-radius: 8px;
@@ -134,6 +138,7 @@ $circulo-cinza-cor:#D9D9D9;
                 padding: 8px;
                 min-width: 400px;
             }
+
         }
         .botoesForm {
             display: flex;
