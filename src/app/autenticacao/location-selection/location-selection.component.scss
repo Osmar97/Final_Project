@@ -89,7 +89,7 @@ $circulo-cinza-cor:#D9D9D9;
         .border{
             border: 1px solid $borda-cor;
             border-radius: 8px;
-            box-shadow: -1px 1px 1px #383838;
+            box-shadow: -1px 1px 1px $borda-cor;
             width: 550px;
 
         }
@@ -154,10 +154,25 @@ $circulo-cinza-cor:#D9D9D9;
                     min-width: 400px;
                 }
 
-                .nota{
-                    text-align: center;
+                .conteudo{
+                    text-align: left;
                     color: $texto-normal-cor;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    
                 }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+            
+                    fa-icon {
+                        font-size: 1.7em;
+                        margin-bottom: 10px;
+                    }
+                }
+
         }
         .botoesForm {
             display: flex;

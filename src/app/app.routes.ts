@@ -3,6 +3,7 @@ import { LoginComponent } from './autenticacao/login/login.component';
 import { RegistroComponent } from './autenticacao/registro/registro.component';
 import { LocationSelectionComponent } from './autenticacao/location-selection/location-selection.component';
 import { UserInfoRegistrationComponent } from './autenticacao/user-info-registration/user-info-registration.component';
+import { LocationPermissionComponent } from './autenticacao/location-permission/location-permission.component';
 import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path:'registro', component: RegistroComponent},
     { path:'registro/UserInfoRegistration', component: UserInfoRegistrationComponent},
     {path: 'LocationSelection', component:  LocationSelectionComponent},
+    {path: 'locationpermision',component:LocationPermissionComponent}
 
   ];
 
