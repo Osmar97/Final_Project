@@ -210,11 +210,11 @@ $circulo-cinza-cor:#D9D9D9;
             }
 
         }
-        .criarConta{
+        .fazerLogin{
             display: flex;
             gap: 0.2rem;
             align-items: center;
-            width: 300px;
+            width: 200px;
 
             .p1{
                 color: $texto-normal-cor;
@@ -362,15 +362,6 @@ $circulo-cinza-cor:#D9D9D9;
                     min-width: 300px;
                 }
     
-                .passEsqueceu{
-                    min-width: 300px;
-                    p{
-                        cursor: pointer;
-                        color: $primaria-cor;
-                        font-weight: 300;
-                    }
-                }
-    
             }
             .submeter{
                 display: flex;
@@ -389,11 +380,11 @@ $circulo-cinza-cor:#D9D9D9;
                 }
     
             }
-            .criarConta{
+            .fazerLogin{
                 display: flex;
                 gap: 0.2rem;
                 align-items: center;
-                width: 200px;
+                width: 100px;
     
                 .p1{
                     color: $texto-normal-cor;

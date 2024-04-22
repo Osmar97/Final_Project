@@ -16,6 +16,27 @@ $circulo-cinza-cor:#D9D9D9;
   @return rgba($color, $alpha);
 }
 
+.mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) {
+  .mat-mdc-text-field-wrapper {
+      background-color: white;
+      border: 1px solid $borda-cor;
+      border-radius: 8px;
+      height: 40px;
+  }
+}
+
+.mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label{
+  font-size: 10px;
+}
+
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align::before {
+  display: none;
+}
+
+mat-form-field:has(mat-select) div[matformfieldlineripple] {
+  display: none;
+}
 *{
     box-sizing: border-box;
     margin: 0;
@@ -36,3 +57,6 @@ $circulo-cinza-cor:#D9D9D9;
   }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
