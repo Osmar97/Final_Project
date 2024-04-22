@@ -34,6 +34,17 @@ $circulo-cinza-cor:#D9D9D9;
   display: none;
 }
 
+.principal {
+  .formulario {
+    .form {
+      .matForm{
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+
 mat-form-field:has(mat-select) div[matformfieldlineripple] {
   display: none;
 }

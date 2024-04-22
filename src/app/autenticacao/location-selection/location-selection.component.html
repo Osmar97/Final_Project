@@ -14,40 +14,55 @@
 
     <div class="formulario">
         <div class="border ">
-            <div class="textoLogin">
-                <h1>ENCONTRE E PARTILHE RECURSOS</h1>
-            </div>
+
+            <div class="alinhamentoForm">
+
+
+                <div class="textoLogin">
+                    <h1>ENCONTRE E PARTILHE RECURSOS</h1>
+                </div>
 
                 <div class="form">
-                    <mat-form-field class="matForm">
+
+
+                    <mat-form-field class="matForm distritosDropdown">
                         <mat-label class="title">Distrito</mat-label>
                         <mat-select (selectionChange)="updateMunicipios($event.value)">
-                          <mat-option *ngFor="let distrito of distritos" [value]="distrito.value">{{distrito.viewValue}}</mat-option>
+                            <mat-option *ngFor="let distrito of distritos"
+                                [value]="distrito.value">{{distrito.viewValue}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field class="matForm">
-                        <mat-label>Municipios</mat-label>
+                    <mat-form-field class="matForm municipiosDropdown">
+                        <mat-label class="municipiosDropdown">Municipios</mat-label>
                         <mat-select>
-                          <mat-option *ngFor="let municipio of municipios" [value]="municipio.value">{{municipio.viewValue}}</mat-option>
+                            <mat-option class="distritosDropdown" *ngFor="let municipio of municipios"
+                                [value]="municipio.value">{{municipio.viewValue}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    
+
                     <div class="conteudo">
                         <div class="icon">
                             <fa-icon [icon]="faLock" class="fa-lg"></fa-icon>
                         </div>
-                        <div>
-                            <p>A sua morada só será utilizada para posicioná-lo na <br/>
-                            comunidade correta. Não partilharemos sua localização a terceiros</p>
+                        <div class="info_partilha_de_dados">
+                            <p>A sua morada só será utilizada para posicioná-lo na <br />
+                                comunidade correta. Não partilharemos sua localização a terceiros</p>
                         </div>
                     </div>
-                    
+
+
+
                 </div>
-            <div class="botoesForm">
-                <div class="submeter">Continuar</div>
-                <div class="voltar"> Voltar</div>
+                <div class="botoesForm">
+                    <div class="submeter">
+                        <p>Submeter</p>
+                    </div>
+                    <div class="voltar">
+                        <p>Voltar</p>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -41,6 +41,8 @@ $circulo-cinza-cor:#D9D9D9;
             justify-content: center;
             align-items: center;
             position: absolute;
+            gap:15px;
+            line-height: 40px;
             height: 100%;
             width: 100%;
             background-color: transparentize($primaria-cor,0.8);
@@ -67,13 +69,12 @@ $circulo-cinza-cor:#D9D9D9;
                 color: white;
                 font-size: 32px;
                 font-weight: 500;
-            } 
+            }
 
         }
 
         
     }
-
     
 
     .formulario{
