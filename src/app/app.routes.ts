@@ -5,6 +5,7 @@ import { LocationSelectionComponent } from './autenticacao/location-selection/lo
 import { UserInfoRegistrationComponent } from './autenticacao/user-info-registration/user-info-registration.component';
 import { LocationPermissionComponent } from './autenticacao/location-permission/location-permission.component';
 import { NgModule } from '@angular/core';
+import { FeedComponent } from './feed/feed.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
@@ -12,7 +13,8 @@ export const routes: Routes = [
     { path:'registro', component: RegistroComponent},
     { path:'registro/UserInfoRegistration', component: UserInfoRegistrationComponent},
     {path: 'LocationSelection', component:  LocationSelectionComponent},
-    {path: 'locationpermision',component:LocationPermissionComponent}
+    {path: 'locationpermision',component:LocationPermissionComponent},
+    {path: 'feed', component:FeedComponent},
 
   ];
 
