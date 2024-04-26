@@ -1,0 +1,45 @@
+<div class="navbar">
+    <div class="leftSection">
+        <div class="logo">
+            <img src="../../../assets/icon castanho.svg" alt="">
+            <p class="logotext">USHARE</p>
+        </div>
+    </div>
+    <div class="centerSection">
+        <div class="feedIcon" [class.active]="isFeedActive" (click)="toggleFeed()">
+            <fa-icon [icon]="faRss" class="iconRss"></fa-icon>
+            <p>Feed</p>
+            <div class="underline"></div>
+        </div>
+        <div class="friendsIcon" [class.active]="!isFeedActive" (click)="toggleArtigos()">
+            <img src="assets/vector-icon.svg" class="iconP"/>
+            <p>Meus artigos</p>
+            <div class="underline"></div>
+        </div>
+    </div>
+    <div class="rightSection">
+        <div class="Icons">
+            <img src="assets/search-icon-icon.svg" alt="" class="IconS" (click)="handleSearchClick()" />
+            <img src="assets/chat-icon-icon.svg" alt="" class="IconMsg" (click)="handleChatClick()" />
+            <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="handleLogoutClick()" />
+        </div>
+        <div class="profilePhoto">
+            <p>Name of the person </p>
+        </div>
+    </div>
+</div>
+
+<div class="col-l">
+    <div class="meusartigos">
+        <div class="box">
+            <img src="assets/vector-icon.svg" class="iconPx"/>
+            <h2>Meus Artigos</h2>
+        </div>
+        <div class="friends">
+            <div class="col-f">
+                <img src="assets/users-icon.svg" class="iconU"/>
+                <h3>Conexões</h3>
+            </div>
+        </div>
+    </div>
+</div>
