@@ -5,6 +5,7 @@ import { faRss } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 
 
 
@@ -25,6 +26,7 @@ export class FeedComponent {
   faMagnifyingGlass=faMagnifyingGlass;
   faMessage=faMessage;
   faRightFromBracket=faRightFromBracket;
+  faPaperPlane=faPaperPlane;
 
   constructor() { }
 
@@ -45,9 +47,12 @@ export class FeedComponent {
 
   toggleFeed() {
     this.isFeedActive = true;
-  }
+    console.log("Feed is active");
+}
 
-  toggleArtigos() {
+toggleArtigos() {
     this.isFeedActive = false;
-  }
+    console.log("Artigos are active");
+}
+
 }

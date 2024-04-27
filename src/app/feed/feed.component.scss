@@ -138,16 +138,56 @@ $circulo-cinza-cor:#D9D9D9;
     }
 }
 
-.col-l {
+.content {
     display: flex;
-    flex-direction: column;
-    width: 30%; /* Adjust the width as needed */
+
+    .posts {
+        width: 50%;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+    
+        &.active {
+            .searchbar {
+                display: block; // Ensure the search bar is displayed when .posts has the active class
+            }
+        }
+    
+        .searchbar {
+            display: none; // Initially hide the search bar
+            color: #505153;
+            outline: solid 1px #ebebeb;
+            outline-offset: -1px;
+            border-radius: 8px;
+            background-color: #fff;
+            justify-content: center;
+            width: 85%;
+            padding: 10px;
+    
+            input {
+                border: none;
+                width: 85%;
+                height: 65px;
+            }
+
+            .faPaperPlane{
+                font-size: 40px;
+                margin-left: 30px;
+                color: $main-color;
+                align-items: center;
+                padding: 5px;
+                justify-content: end;
+            }
+        }
+    }
+    
 }
 
 .meusartigos {
     display: flex;
     flex-direction: column;
     padding: 10px;
+    width: 30%;
 
     .box {
         display: flex;
@@ -160,6 +200,8 @@ $circulo-cinza-cor:#D9D9D9;
         border-radius: 8px;
         background-color: #fff;
         justify-content: center;
+        height: 25%;
+        margin-top: 15px;
 
         .iconPx{
             margin-right: 10px;
@@ -169,6 +211,8 @@ $circulo-cinza-cor:#D9D9D9;
             margin-top: 20px;
         }
     }
+
+}
 
     .friends {
         padding-top: 20px;
@@ -198,11 +242,4 @@ $circulo-cinza-cor:#D9D9D9;
 
             }
         }
-
-
-}
-
-
-}
-
-
+    }
