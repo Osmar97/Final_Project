@@ -6,6 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -27,8 +28,17 @@ export class FeedComponent {
   faMessage=faMessage;
   faRightFromBracket=faRightFromBracket;
   faPaperPlane=faPaperPlane;
+  faPaperclip=faPaperclip;
 
   constructor() { }
+
+  handleSendClick(){
+    console.log('send icon clicked');
+  }
+
+  handleAttachClick(){
+    console.log('Attach icon clicked');
+  }
 
   handleSearchClick() {
 

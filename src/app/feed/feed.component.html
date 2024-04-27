@@ -45,7 +45,8 @@
     <div class="posts" [class.active]="isFeedActive">
         <div class="searchbar">
             <input type="text" placeholder="Solicite ou disponibilize um recurso ...">
-            <fa-icon [icon]="faPaperPlane" class="faPaperPlane"></fa-icon>
+            <fa-icon [icon]="faPaperclip" class="faPaperclip" (click)="handleAttachClick()" ></fa-icon>
+            <fa-icon [icon]="faPaperPlane" class="faPaperPlane" (click)="handleSendClick()" ></fa-icon>
         </div>
     </div>
 </div>
