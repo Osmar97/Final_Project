@@ -64,10 +64,10 @@ mat-form-field:has(mat-select) div[matformfieldlineripple] {
 
 
   body {
+    height: 100%;
+    margin: 0;
     font-family: 'Montserrat', sans-serif; /* Fallback to sans-serif if Montserrat isn't available */
   }
 
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ 

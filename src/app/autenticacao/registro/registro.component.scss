@@ -124,6 +124,7 @@ $circulo-cinza-cor:#D9D9D9;
                 p{
                     color: $texto-normal-cor;
                     font-weight: 200;
+                    margin: 0;
                 }
     
     
@@ -236,7 +237,7 @@ $circulo-cinza-cor:#D9D9D9;
       transform:scale(1);
     }
     to {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
   
@@ -406,7 +407,7 @@ $circulo-cinza-cor:#D9D9D9;
           transform:scale(1);
         }
         to {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       }
 }

@@ -145,6 +145,7 @@ $circulo-cinza-cor:#D9D9D9;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 400px;
             gap: 1rem;
             
             .submeter{
@@ -152,8 +153,8 @@ $circulo-cinza-cor:#D9D9D9;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                height: 60px;
-                width: 208px;
+                height: 50px;
+                width: 108px;
                 border-radius: 32px;
                 background-color: $primaria-cor;
                 color: $branca-cor;
@@ -161,6 +162,10 @@ $circulo-cinza-cor:#D9D9D9;
                 &:hover{
 
                     animation: scaleAnimation 0.3s ease forwards;
+                }
+                p{
+                    margin: 0;
+                    text-align: center;
                 }
 
             }
@@ -170,17 +175,22 @@ $circulo-cinza-cor:#D9D9D9;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                height: 60px;
-                width: 208px;
+                height: 50px;
+                width: 108px;
                 border-radius: 32px;
                 background-color:$branca-cor ;
                 color: $texto-normal-cor;
                 border-color: #000000;
-                border: 1px solid #000000;
+                border: 1px solid $borda-cor;
 
                 &:hover{
 
                     animation: scaleAnimation 0.3s ease forwards;
+                }
+
+                p{
+                    margin: 0;
+                    text-align: center;
                 }
 
             }
@@ -195,7 +205,7 @@ $circulo-cinza-cor:#D9D9D9;
       transform:scale(1);
     }
     to {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
   
@@ -307,9 +317,12 @@ $circulo-cinza-cor:#D9D9D9;
 
             .botoesForm {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
                 gap: 1rem;
+                padding: 8px;
+                max-width: 300px;
 
 
                 .submeter{
@@ -317,8 +330,8 @@ $circulo-cinza-cor:#D9D9D9;
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    height: 60px;
-                    width: 208px;
+                    height: 50px;
+                    width: 100%;
                     border-radius: 32px;
                     background-color: $primaria-cor;
                     color: $branca-cor;
@@ -327,24 +340,32 @@ $circulo-cinza-cor:#D9D9D9;
         
                         animation: scaleAnimation 0.3s ease forwards;
                     }
+                    p{
+                        margin: 0;
+                    }
         
                 }
                 .voltar{
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    width: 100%;
                     cursor: pointer;
-                    height: 60px;
-                    width: 208px;
+                    height: 50px;
+                    margin: 8px;
                     border-radius: 32px;
                     background-color: $branca-cor;
                     color: $primaria-cor;
-                    border-color: #000000;
-                    border: 2px solid #000000;
+                    border: 1px solid $borda-cor;
         
                     &:hover{
         
                         animation: scaleAnimation 0.3s ease forwards;
+                    }
+
+                    p{
+                        margin: 0;
+                        color: $texto-normal-cor;
                     }
         
                 }
@@ -357,7 +378,7 @@ $circulo-cinza-cor:#D9D9D9;
           transform:scale(1);
         }
         to {
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       }
 }

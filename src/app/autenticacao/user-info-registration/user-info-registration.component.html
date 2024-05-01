@@ -21,18 +21,18 @@
         <div class="form">
             <p class="campotipo">TIPO DE UTILIZADOR</p>
             <mat-form-field>
-                <mat-select>
+                <mat-select [(ngModel)]="tipoUser">
                     @for (usuario of usuarios; track usuario) {
                     <mat-option [value]="usuario.value">{{usuario.viewValue}}</mat-option>
                     }
             </mat-select>
             </mat-form-field>
-            <input type="text" placeholder="Nome">
-            <input type="numbers" placeholder="NIF">
+            <input [(ngModel)]="nome" type="text" placeholder="Nome">
+            <input [(ngModel)]="nif" type="numbers" placeholder="NIF">
         </div>
         <div class="botoesForm">
-            <div class="voltar"> Voltar</div>
-            <div class="submeter">Continuar</div>
+            <div (click)="navegarRegistro()" class="voltar"> <p>Voltar</p></div>
+            <div (click)="loginUserInfo()"class="submeter"><p>Continuar</p></div>
         </div>
     </div>
 </div>

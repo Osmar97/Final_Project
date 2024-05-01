@@ -6,6 +6,7 @@ import { UserInfoRegistrationComponent } from './autenticacao/user-info-registra
 import { LocationPermissionComponent } from './autenticacao/location-permission/location-permission.component';
 import { NgModule } from '@angular/core';
 import { FeedComponent } from './feed/feed.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
