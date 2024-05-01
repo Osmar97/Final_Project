@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
+import { AutenticacaoService } from '../../servicos/autenticacao.service';
 
 @Component({
   selector: 'app-location-permission',
@@ -13,15 +15,44 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 export class LocationPermissionComponent {
 
   faLock = faLock;
+  utilizador:any;
+  coordenadas:any;
+  registrar$!:Observable<any>;
+  constructor(private router: Router,private authService:AutenticacaoService){}
 
-  constructor(private router: Router){}
+  ngAfterViewInit(){
+    try{
+      this.utilizador = JSON.parse(String(localStorage.getItem('user')))
 
+    }catch(e){
+
+    }
+
+  }
   navegarLocationSelection() {
     // Navigate to the new route programmatically
     this.router.navigate(['/LocationSelection']);
   }
   navegarFeed() {
     // Navigate to the new route programmatically
-    this.router.navigate(['/feed']);
-  }
+    navigator.geolocation.getCurrentPosition((position: GeolocationPosition) =>{
+      this.coordenadas=position.coords.latitude +', ' +position.coords.longitude;
+      this.utilizador.coordenadasMorada=this.coordenadas;
+      localStorage.setItem('user',JSON.stringify(this.utilizador))
+
+      this.registrar$=this.authService.registerClient(this.utilizador)
+
+      this.registrar$.subscribe({
+        next:(val=>{ this.router.navigate(['/feed']);}),
+        error:(err=>{console.log('error')})
+      })
+       
+    });
+
+   }
+ 
+
+  
+
+ 
 }

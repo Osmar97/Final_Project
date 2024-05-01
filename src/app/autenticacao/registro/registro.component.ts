@@ -17,7 +17,17 @@ export class RegistroComponent implements AfterViewInit{
   password: string = '';
   passwordConfirm: String = ''
   registro$!: Observable<String>;
-  usuario: any = {}
+  usuario: any ={
+    "nome": "",
+    "nif":0,
+    "tipoUser": "",
+    "email": "",
+    "password": "",
+    "coordenadasMorada": "",
+    "id_dist": 0,
+    "id_munic": 0
+
+  };
 
 
   constructor(private router: Router, private authService: AutenticacaoService) { }
@@ -30,7 +40,6 @@ export class RegistroComponent implements AfterViewInit{
   ngAfterViewInit():void{
     try{
       setTimeout(() => {
-        
         this.email=JSON.parse(String(localStorage.getItem('user'))).email
       }, 100);
     }catch(e){
@@ -41,26 +50,11 @@ export class RegistroComponent implements AfterViewInit{
 
     if (this.password == this.passwordConfirm && this.password!='' && this.passwordConfirm!='') {
 
-      this.usuario={
-          "id":0,
-          "nome": "",
-          "nif":0,
-          "tipoUser": "",
-          "email": this.email,
-          "password": this.password,
-          "coordenadasMorada": "",
-          "id_dist": 0,
-          "id_munic": 0
-
-        };
-
+      this.usuario.email= this.email;
+      this.usuario.password = this.password;
        
-      
-
       localStorage.setItem('user',JSON.stringify(this.usuario))
 
-      let a=localStorage.getItem('user')
-      console.log(a)
       this.router.navigate(['/registro/UserInfoRegistration']);
 
     }else{

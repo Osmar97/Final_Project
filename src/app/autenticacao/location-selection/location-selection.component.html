@@ -24,20 +24,19 @@
 
                 <div class="form">
 
-
                     <mat-form-field class="matForm distritosDropdown">
                         <mat-label class="title">Distrito</mat-label>
-                        <mat-select (selectionChange)="updateMunicipios($event.value)">
+                        <mat-select [(ngModel)]="distritoAtual" (selectionChange)="updateMunicipios($event.value)">
                             <mat-option *ngFor="let distrito of distritos"
-                                [value]="distrito.value">{{distrito.viewValue}}</mat-option>
+                                [value]="distrito.id">{{distrito.nome}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
                     <mat-form-field class="matForm municipiosDropdown">
                         <mat-label class="municipiosDropdown">Municipios</mat-label>
-                        <mat-select>
+                        <mat-select [(ngModel)]="municipioAtual">
                             <mat-option class="distritosDropdown" *ngFor="let municipio of municipios"
-                                [value]="municipio.value">{{municipio.viewValue}}</mat-option>
+                                [value]="municipio.id">{{municipio.nome}}</mat-option>
                         </mat-select>
                     </mat-form-field>
 
@@ -57,10 +56,10 @@
                 </div>
                 <div class="botoesForm">
                     <div (click)="navegarLocationPermission()" class="submeter">
-                        <p  >Submeter</p>
+                        <p>Continuar</p>
                     </div>
                     <div (click)="navegarUserInfo()" class="voltar">
-                        <p  >Voltar</p>
+                        <p>Voltar</p>
                     </div>
                 </div>
             </div>

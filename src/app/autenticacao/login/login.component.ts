@@ -24,7 +24,7 @@ export class LoginComponent {
   }
   
 
-  token$!: Observable<string>;
+  token$!: Observable<any>;
 
 
   login(): void {
@@ -32,15 +32,14 @@ export class LoginComponent {
 
     this.token$.subscribe({
       next: (value)=>{ 
+
         
         console.log('Observable emitted the next value: ' + value)
-        this.authService.setCookie('token',value)
+        this.authService.setCookie('token',value.token)
+        this.router.navigate(['/feed']);
+
       },
       error: err => console.error('Observable emitted an error: ' + err),
     });
-
-
-
-    
   }
 }

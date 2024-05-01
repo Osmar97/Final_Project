@@ -7,6 +7,10 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AutenticacaoService } from '../../servicos/autenticacao.service';
+import { Observable } from 'rxjs';
+import next from 'next';
+import { error } from 'console';
 
 interface Distrito {
   value: string;
@@ -23,20 +27,87 @@ interface Municipio {
 @Component({
   selector: 'app-location-selection',
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, FontAwesomeModule,CommonModule],
+  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule, FontAwesomeModule, CommonModule],
   templateUrl: './location-selection.component.html',
   styleUrls: ['./location-selection.component.scss']
 })
 export class LocationSelectionComponent {
 
   faLock = faLock;
+  dists$!: Observable<any>
+  municipios$!: Observable<any>
+  distritos: any[] = [];
+  todosMunicipios: any[] = [];
+  municipios: any[] = [];
+  utilizador: any;
+  municipioAtual!: string;
+  distritoAtual!: string;
+
+
+
+  constructor(private router: Router, private authService: AutenticacaoService) { }
+
+  ngAfterViewInit(): void {
+    try {
+
+      setTimeout(() => {
+        console.log('entrou')
+        this.iniciarTela()
+ 
+      }, 300);
+    } catch (e) {
+
+    }
+  }
+
+
+
+
+  iniciarTela() {
+    this.dists$ = this.authService.obterDistritos();
+    this.municipios$ = this.authService.obterMunicipios();
+ 
+    this.dists$.subscribe({
+      next: (val) => { this.distritos = val; console.log(this.distritos) 
+
+        this.municipios$.subscribe({
+          next: (val) => { this.todosMunicipios = val;console.log(this.todosMunicipios)
+            this.utilizador = JSON.parse(String(localStorage.getItem('user')))
+            console.log(this.utilizador)
+            if (this.utilizador.id_dist != 0) {
+              
+              let a=this.distritos.filter((val)=>val.id==this.utilizador.id_dist)[0];
+              console.log(a,"aqui")
+              this.distritoAtual=this.distritos.filter((val)=>val.id==this.utilizador.id_dist)[0].id;
+              console.log(this.distritoAtual)
+        
+              this.municipios = this.todosMunicipios.filter((val) => val.id_dist == this.utilizador.id_dist);
+              this.municipioAtual = this.todosMunicipios.filter((val) => val.id == this.utilizador.id_munic)[0].id
+            }
+
+          },
+          error: (err) => { console.error(err) }
+        });
+
+
+      },
+      error: (err) => { console.error(err) }
+    })
 
  
-  constructor(private router: Router){}
+
+  }
 
 
-  
   navegarLocationPermission() {
+
+     
+
+    this.utilizador.id_dist=this.distritoAtual 
+    this.utilizador.id_munic=this.municipioAtual
+
+    localStorage.setItem('user', JSON.stringify(this.utilizador))
+
     // Navigate to the new route programmatically
     this.router.navigate(['/locationpermision']);
   }
@@ -45,6 +116,8 @@ export class LocationSelectionComponent {
     this.router.navigate(['/registro/UserInfoRegistration']);
   }
 
+  updateMunicipios(dist: any) {
+    this.municipios = this.todosMunicipios.filter((val) => val.id_dist == dist)
+  }
 
- 
 }
