@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -37,6 +37,17 @@ export class AutenticacaoService {
   registerClient(clientData: any): Observable<any> {
     return this.http.post<any>(`${this.url}/register`, clientData);
   }
+
+    // Add token to headers
+    private getHeaders() {
+      const token = this.getCookie('token');
+      return new HttpHeaders().set('Authorization', `${token}`);
+    }
+  
+    // Example authenticated request
+    loginJWT() {
+      return this.http.get<any>(`${this.url}/protected`, { headers: this.getHeaders() });
+    }
 
  
 }

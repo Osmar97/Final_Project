@@ -28,12 +28,23 @@ export class LoginComponent {
 
   // Function to redirect to the user page if the token is valid
   public redirectToUserPageIfValid(): void {
-    if (this.authService.getCookie('token')) {
-      this.router.navigate(['/feed']); // Navigate to the user page
-    }
+
+    let res$:Observable<any>=this.authService.loginJWT()
+
+    res$.subscribe({
+      next:(val)=>{
+        console.log(val)
+        this.router.navigate(['/feed']); // Navigate to the user page
+
+      },
+      error:(err)=>console.error(err)
+    })
+
+   
   }
   ngAfterViewInit():void{
 
+    if(this.authService.getCookie('token'))
       this.redirectToUserPageIfValid()
 
 
