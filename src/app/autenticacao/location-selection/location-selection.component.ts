@@ -11,6 +11,7 @@ import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { Observable } from 'rxjs';
 import next from 'next';
 import { error } from 'console';
+import { MensagemErroService } from '../../servicos/mensagem-erro.service';
 
 interface Distrito {
   value: string;
@@ -45,7 +46,7 @@ export class LocationSelectionComponent {
 
 
 
-  constructor(private router: Router, private authService: AutenticacaoService) { }
+  constructor(private router: Router, private authService: AutenticacaoService,private erro:MensagemErroService) { }
 
   ngAfterViewInit(): void {
     try {
@@ -102,14 +103,19 @@ export class LocationSelectionComponent {
   navegarLocationPermission() {
 
      
+    if(!this.distritoAtual || !this.municipioAtual){
+      this.erro.openErrorSnackBar('Preencha todos os campos')
+    }else{
 
-    this.utilizador.id_dist=this.distritoAtual 
-    this.utilizador.id_munic=this.municipioAtual
+      this.utilizador.id_dist=this.distritoAtual 
+      this.utilizador.id_munic=this.municipioAtual
+  
+      localStorage.setItem('user', JSON.stringify(this.utilizador))
+  
+      // Navigate to the new route programmatically
+      this.router.navigate(['/locationpermision']);
+    }
 
-    localStorage.setItem('user', JSON.stringify(this.utilizador))
-
-    // Navigate to the new route programmatically
-    this.router.navigate(['/locationpermision']);
   }
   navegarUserInfo() {
     // Navigate to the new route programmatically

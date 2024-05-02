@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { FormsModule } from '@angular/forms';
+import { MensagemErroService } from '../../servicos/mensagem-erro.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,15 +12,15 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.scss'
 })
-export class RegistroComponent implements AfterViewInit{
+export class RegistroComponent implements AfterViewInit {
 
   email: string = '';
   password: string = '';
   passwordConfirm: String = ''
   registro$!: Observable<String>;
-  usuario: any ={
+  usuario: any = {
     "nome": "",
-    "nif":0,
+    "nif": 0,
     "tipoUser": "",
     "email": "",
     "password": "",
@@ -30,40 +31,59 @@ export class RegistroComponent implements AfterViewInit{
   };
 
 
-  constructor(private router: Router, private authService: AutenticacaoService) { }
+  constructor(private router: Router, private erro: MensagemErroService) { }
 
   navegarLogin() {
     // Navigate to the new route programmatically
     this.router.navigate(['/login']);
   }
 
-  ngAfterViewInit():void{
-    try{
+  ngAfterViewInit(): void {
+    try {
       setTimeout(() => {
-        this.email=JSON.parse(String(localStorage.getItem('user'))).email
+        this.email = JSON.parse(String(localStorage.getItem('user'))).email
       }, 100);
-    }catch(e){
+    } catch (e) {
     }
   }
+
+
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
+
   
+
+
   registrarEmailEPass(): void {
 
-    if (this.password == this.passwordConfirm && this.password!='' && this.passwordConfirm!='') {
+    if (!this.isValidEmail(this.email)) {
+      this.erro.openErrorSnackBar("Formato do email incorreto")
+      return;
+    }
 
-      this.usuario.email= this.email;
+   
+
+    if (this.password == this.passwordConfirm && this.password != '' && this.passwordConfirm != '') {
+
+      this.usuario.email = this.email;
       this.usuario.password = this.password;
-       
-      localStorage.setItem('user',JSON.stringify(this.usuario))
+
+      localStorage.setItem('user', JSON.stringify(this.usuario))
 
       this.router.navigate(['/registro/UserInfoRegistration']);
 
-    }else{
+    } else if (this.password == '' || this.email == '') {
 
-      console.log('Palavras passe nao coincidem')
+      this.erro.openErrorSnackBar('Preencha todos os campos')
+
+    } else if (this.password != this.passwordConfirm) {
+      this.erro.openErrorSnackBar('Palavras passe não coincidem')
 
     }
 
   }
- 
+
 
 }

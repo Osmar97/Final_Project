@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
+import { MensagemErroService } from '../../servicos/mensagem-erro.service';
 
 @Component({
   selector: 'app-location-permission',
@@ -18,7 +19,7 @@ export class LocationPermissionComponent {
   utilizador:any;
   coordenadas:any;
   registrar$!:Observable<any>;
-  constructor(private router: Router,private authService:AutenticacaoService){}
+  constructor(private router: Router,private authService:AutenticacaoService,private erro:MensagemErroService){}
 
   ngAfterViewInit(){
     try{
@@ -48,7 +49,11 @@ export class LocationPermissionComponent {
 
 
         }),
-        error:(err=>{console.log('error')})
+        error:(err=>{
+          console.log(err)
+          this.erro.openErrorSnackBar("O email registrado já está em uso")
+
+        })
       })
        
     });

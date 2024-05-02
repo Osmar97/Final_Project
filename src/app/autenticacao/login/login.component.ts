@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import {jwtDecode} from 'jwt-decode'; // Import jwt-decode library for decoding JWT tokens
+import { jwtDecode } from 'jwt-decode'; // Import jwt-decode library for decoding JWT tokens
+import { MensagemErroService } from '../../servicos/mensagem-erro.service';
 
 @Component({
   selector: 'app-login',
@@ -14,59 +15,79 @@ import {jwtDecode} from 'jwt-decode'; // Import jwt-decode library for decoding 
 })
 export class LoginComponent {
 
-  email:string='';
-  password:string='';
+  email: string = '';
+  password: string = '';
 
-  constructor(private router: Router,private authService: AutenticacaoService){}
+  constructor(private router: Router, private authService: AutenticacaoService, private erro: MensagemErroService) { }
 
   navegarRegistro() {
     // Navigate to the new route programmatically
     this.router.navigate(['/registro']);
+
   }
 
- 
+
 
   // Function to redirect to the user page if the token is valid
   public redirectToUserPageIfValid(): void {
 
-    let res$:Observable<any>=this.authService.loginJWT()
+    let res$: Observable<any> = this.authService.loginJWT()
 
     res$.subscribe({
-      next:(val)=>{
-        console.log(val)
+      next: (user) => {
+        console.log(user)
+        localStorage.setItem('user',user.id)
         this.router.navigate(['/feed']); // Navigate to the user page
 
       },
-      error:(err)=>console.error(err)
+      error: (err) => {
+
+        console.error(err)
+      }
     })
 
-   
-  }
-  ngAfterViewInit():void{
 
-    if(this.authService.getCookie('token'))
+  }
+  ngAfterViewInit(): void {
+
+    if (this.authService.getCookie('token'))
       this.redirectToUserPageIfValid()
 
-
   }
-  
+
 
   token$!: Observable<any>;
 
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  }
 
   login(): void {
+    if (this.email=='' || this.password=='') {
+      this.erro.openErrorSnackBar("Preencha todos os campos")
+
+      return;
+    }
+    if (!this.isValidEmail(this.email)) {
+      this.erro.openErrorSnackBar("Formato do email incorreto")
+
+      return;
+    }
     this.token$ = this.authService.login(this.email, this.password);
 
     this.token$.subscribe({
-      next: (value)=>{ 
+      next: (value) => {
 
-        
+
         console.log('Observable emitted the next value: ' + value)
-        this.authService.setCookie('token',value.token)
+        this.authService.setCookie('token', value.token)
         this.router.navigate(['/feed']);
 
       },
-      error: err => console.error('Observable emitted an error: ' + err),
+      error: err => {
+        this.erro.openErrorSnackBar(err.error.message)
+      }
     });
   }
 }

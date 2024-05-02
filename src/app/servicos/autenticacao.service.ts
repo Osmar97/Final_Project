@@ -49,5 +49,6 @@ export class AutenticacaoService {
       return this.http.get<any>(`${this.url}/protected`, { headers: this.getHeaders() });
     }
 
+    
  
 }
