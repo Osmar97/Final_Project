@@ -53,17 +53,14 @@ export class RegistroComponent implements AfterViewInit {
     return emailRegex.test(email);
   }
 
-  
+
 
 
   registrarEmailEPass(): void {
 
-    if (!this.isValidEmail(this.email)) {
-      this.erro.openErrorSnackBar("Formato do email incorreto")
-      return;
-    }
 
-   
+
+
 
     if (this.password == this.passwordConfirm && this.password != '' && this.passwordConfirm != '') {
 
@@ -74,11 +71,18 @@ export class RegistroComponent implements AfterViewInit {
 
       this.router.navigate(['/registro/UserInfoRegistration']);
 
-    } else if (this.password == '' || this.email == '') {
+    } 
+    
+    if (this.password == '' || this.email == '') {
 
       this.erro.openErrorSnackBar('Preencha todos os campos')
 
-    } else if (this.password != this.passwordConfirm) {
+    } 
+     if (!this.isValidEmail(this.email)) {
+      this.erro.openErrorSnackBar("Formato do email incorreto")
+      
+    } 
+     if (this.password != this.passwordConfirm) {
       this.erro.openErrorSnackBar('Palavras passe não coincidem')
 
     }
