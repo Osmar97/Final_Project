@@ -149,12 +149,12 @@ $circulo-cinza-cor:#D9D9D9;
     
         &.active {
             .searchbar {
-                display: block; // Ensure the search bar is displayed when .posts has the active class
+                display: block;
             }
         }
     
         .searchbar {
-            display: none; // Initially hide the search bar
+            display: none;
             color: #505153;
             outline: solid 1px #ebebeb;
             outline-offset: -1px;
@@ -206,7 +206,7 @@ $circulo-cinza-cor:#D9D9D9;
         border-radius: 8px;
         background-color: #fff;
         justify-content: center;
-        height: 25%;
+        height: 7%;
         margin-top: 15px;
 
         .iconPx{
@@ -247,5 +247,149 @@ $circulo-cinza-cor:#D9D9D9;
                 font-weight: 900;
 
             }
+            p{
+                color: #c8ccd5;
+            font-size: 20px;
+            font-weight: 500;
+            font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+            'Liberation Sans', sans-serif;
+            margin-top: 11px;
+            }
         }
     }
+    .posts {
+        width: 60%; // Adjust as needed
+        display: flex;
+        flex-direction: column;
+    
+        .searchbar {
+          margin-bottom: 20px;
+    
+          input[type="text"] {
+            width: calc(100% - 40px); // Adjust for icons
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+          }
+          .btnenv{
+            
+
+            .botaoEnviar {
+                position: absolute;
+                width: 80px;
+                height: 49px;
+                outline: solid 1px #ebebeb;
+                outline-offset: -1px;
+                border-radius: 8px;
+                background-color: #955e42;
+              }
+    
+              .send {
+                position: absolute;
+                width: 32px;
+                height: 32px;
+              }
+          }
+
+          .clip{
+            .ellipse122 {
+                width: 29px;
+                height: 29px;
+              }
+              .icon38 {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+              .paperClipOutline {
+                width: 16px;
+                height: 16px;
+              }
+              .icon39 {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+          }
+        }
+    
+        .post-container {
+            
+          .post {
+            outline: solid 1px #ebebeb;
+            outline-offset: -1px;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 15px;
+            
+    
+            .post-header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 10px;
+    
+              .profile-photo {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 10px;
+    
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+
+                .post-content{
+
+                    .carpic{
+                        object-fit: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: absolute;
+                        left: 408px;
+                        top: 320px;
+                        width: 514px;
+                        height: 342px;
+                        border-radius: 11px;
+                        background-color: #d9d9d9;
+                    }
+                }
+              }
+    
+              .post-author {
+                p {
+                  margin: 0;
+                  font-weight: bold;
+                }
+                }
+            }
+
+            .line10 {
+                max-width: 100%;
+                height: 0;
+                max-height: 100%;
+                border-bottom: solid 1px #d9d9d9;
+            }
+
+            p{
+                color: #505153;
+                font-size: 14px;
+                font-weight: 500;
+                font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+                'Liberation Sans', sans-serif;
+            }
+
+            .line11 {
+                max-width: 100%;
+                height: 0;
+                max-height: 100%;
+                border-bottom: solid 1px #d9d9d9;
+            }
+        }
+    }
+}

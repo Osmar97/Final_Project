@@ -39,14 +39,47 @@
             <div class="col-f">
                 <img src="assets/users-icon.svg" class="iconU"/>
                 <h3>Conexões</h3>
+                <p>(nº)</p>
             </div>
         </div>
     </div>
     <div class="posts" [class.active]="isFeedActive">
         <div class="searchbar">
             <input type="text" placeholder="Solicite ou disponibilize um recurso ...">
-            <fa-icon [icon]="faPaperclip" class="faPaperclip" (click)="handleAttachClick()" ></fa-icon>
-            <fa-icon [icon]="faPaperPlane" class="faPaperPlane" (click)="handleSendClick()" ></fa-icon>
+            <div class="btnenv">
+                <div class="botaoEnviar"></div>
+                <div class="send">
+                    <img src="assets/send-icon.svg" alt="" class="icon19" />
+                </div>
+            </div>
+
+            <div class="clip">
+                <div class="ellipse122">
+                    <img src="assets/ellipse-12-icon.svg" alt="" class="icon38" />
+                </div>
+                <div class="paperClipOutline">
+                    <img src="assets/paperclipoutline-icon.svg" alt="" class="icon39" />
+                </div>
+            </div>
+        </div>
+
+        <div class="post-container">
+            <div class="post">
+                <div class="post-header">
+                    <div class="profile-photo">
+                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
+                    </div>
+                    <div class="post-author">
+                        <p>Name of the Person</p>
+                    </div>
+                </div>
+                <div class="line10"></div>
+                <p>Quem tiver um carro igual a este pfv contacte-me</p>
+                <div class="post-content">
+                    <img src="assets/rectangle30.jpeg" alt="carpic">
+                </div>
+                <div class="line11"></div>
+            </div>
         </div>
     </div>
 </div>
