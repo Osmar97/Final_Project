@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import {jwtDecode} from 'jwt-decode'; // Import jwt-decode library for decoding JWT tokens
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,21 @@ export class LoginComponent {
   navegarRegistro() {
     // Navigate to the new route programmatically
     this.router.navigate(['/registro']);
+  }
+
+ 
+
+  // Function to redirect to the user page if the token is valid
+  public redirectToUserPageIfValid(): void {
+    if (this.authService.getCookie('token')) {
+      this.router.navigate(['/feed']); // Navigate to the user page
+    }
+  }
+  ngAfterViewInit():void{
+
+      this.redirectToUserPageIfValid()
+
+
   }
   
 

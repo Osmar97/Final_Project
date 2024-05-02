@@ -38,12 +38,16 @@ export class LocationPermissionComponent {
     navigator.geolocation.getCurrentPosition((position: GeolocationPosition) =>{
       this.coordenadas=position.coords.latitude +', ' +position.coords.longitude;
       this.utilizador.coordenadasMorada=this.coordenadas;
-      localStorage.setItem('user',JSON.stringify(this.utilizador))
-
+ 
       this.registrar$=this.authService.registerClient(this.utilizador)
 
       this.registrar$.subscribe({
-        next:(val=>{ this.router.navigate(['/feed']);}),
+        next:(val=>{console.log(val); this.router.navigate(['/feed']);
+        localStorage.setItem('user',JSON.stringify(val));
+        this.authService.setCookie('token',val.token)
+
+
+        }),
         error:(err=>{console.log('error')})
       })
        
