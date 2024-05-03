@@ -12,7 +12,7 @@
             <div class="underline"></div>
         </div>
         <div class="friendsIcon" [class.active]="!isFeedActive" (click)="toggleArtigos()">
-            <img src="assets/vector-icon.svg" class="iconP"/>
+            <img src="assets/vector-icon.svg" class="iconP" />
             <p>Meus artigos</p>
             <div class="underline"></div>
         </div>
@@ -31,55 +31,56 @@
 <div class="content">
     <div class="meusartigos">
         <div class="box">
-            <img src="assets/vector-icon.svg" class="iconPx"/>
+            <img src="assets/vector-icon.svg" class="iconPx" />
             <h2>Meus Artigos</h2>
         </div>
-    
+
         <div class="friends">
             <div class="col-f">
-                <img src="assets/users-icon.svg" class="iconU"/>
+                <img src="assets/users-icon.svg" class="iconU" />
                 <h3>Conexões</h3>
                 <p>(nº)</p>
             </div>
         </div>
     </div>
-    <div class="posts" [class.active]="isFeedActive">
-        <div class="searchbar">
-            <input type="text" placeholder="Solicite ou disponibilize um recurso ...">
-            <div class="btnenv">
-                <div class="botaoEnviar"></div>
-                <div class="send">
-                    <img src="assets/send-icon.svg" alt="" class="icon19" />
-                </div>
-            </div>
 
-            <div class="clip">
-                <div class="ellipse122">
-                    <img src="assets/ellipse-12-icon.svg" alt="" class="icon38" />
-                </div>
+    <div class="publicacoes">
+
+        <div class="posts" [class.active]="isFeedActive">
+            <div class="searchbar">
+                <input type="text" placeholder="Solicite ou disponibilize um recurso ...">
+                
                 <div class="paperClipOutline">
                     <img src="assets/paperclipoutline-icon.svg" alt="" class="icon39" />
                 </div>
-            </div>
-        </div>
+                <div class="botaoEnviar">
 
-        <div class="post-container">
-            <div class="post">
-                <div class="post-header">
-                    <div class="profile-photo">
-                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
-                    </div>
-                    <div class="post-author">
-                        <p>Name of the Person</p>
-                    </div>
+                        <img src="assets/send-icon.svg" alt="" class="icon19" />
                 </div>
-                <div class="line10"></div>
-                <p>Quem tiver um carro igual a este pfv contacte-me</p>
-                <div class="post-content">
-                    <img src="assets/rectangle30.jpeg" alt="carpic">
+            </div>
+
+            <div class="post-container">
+                <div class="post">
+                    <div class="post-header">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
+                        </div>
+                        <div class="post-author">
+                            <p>Name of the Person</p>
+                        </div>
+                    </div>
+                    <div class="line10"></div>
+                    <p>Quem tiver um carro igual a este pfv contacte-me</p>
+                    <div class="post-content">
+                        <img width="100%" src="assets/rectangle30.jpeg" alt="carpic">
+                    </div>
+                    <div class="line11"></div>
                 </div>
-                <div class="line11"></div>
             </div>
         </div>
+    </div>
+
+    <div class="eventos">
+
     </div>
 </div>
