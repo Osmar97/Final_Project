@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { Observable } from 'rxjs';
-import next from 'next';
 import { error } from 'console';
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
 

@@ -7,6 +7,8 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { EventoComponent } from './evento/evento.component';
+import {MatDialogModule} from '@angular/material/dialog'
 
 
 
@@ -14,7 +16,7 @@ import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, EventoComponent , MatDialogModule],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
