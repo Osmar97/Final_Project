@@ -8,7 +8,9 @@ import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { EventoComponent } from './evento/evento.component';
-import {MatDialogModule} from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog';
+import { PopupPComponent } from './popup-p/popup-p.component';
 
 
 
@@ -32,7 +34,11 @@ export class FeedComponent {
   faPaperPlane=faPaperPlane;
   faPaperclip=faPaperclip;
 
-  constructor() { }
+  constructor(private subbtn:MatDialog) {}
+
+  opensubbtn(){
+    this.subbtn.open(PopupPComponent);
+  }
 
   handleSendClick(){
     console.log('send icon clicked');

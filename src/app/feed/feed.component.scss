@@ -222,7 +222,6 @@ $circulo-cinza-cor: #D9D9D9;
 
     .publicacoes {
         width: 100%;
-        border: 1px solid $borda-cor;
 
         .posts {
             display: flex;
@@ -250,6 +249,8 @@ $circulo-cinza-cor: #D9D9D9;
                     justify-content: center;
                     align-items: center;
                     width: 60px;
+                    border: none;
+                    cursor: pointer;
 
                     border-radius: 8px;
                     background-color: #955e42;
@@ -353,7 +354,6 @@ $circulo-cinza-cor: #D9D9D9;
     }
 
     .eventos {
-        border: 1px solid $borda-cor;
 
         width: 100%;
 
@@ -398,4 +398,8 @@ $circulo-cinza-cor: #D9D9D9;
             margin-top: 11px;
         }
     }
+
+}
+.eventos{
+    padding:10px;
 }

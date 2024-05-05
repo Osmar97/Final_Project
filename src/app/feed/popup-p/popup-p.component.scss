@@ -1,0 +1,93 @@
+.popup{
+    border-radius: 16px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+    left: 428px;
+    top: 39px;
+    width: 672px;
+    height: 724px;
+    justify-items: center;
+    align-items: center;
+
+    .anucio{
+        display: flex;
+        align-self: center;
+        justify-self: center;
+
+    }
+    .line{
+        max-width: 100%;
+        height: 0;
+        border-bottom: solid 1px #d9d9d9;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 100%;
+    }
+    
+    .postTitle{
+        outline: solid 1px #d9d9d9;
+        outline-offset: -1px;
+        border-radius: 16px;
+        background-color: #fff;
+        width: 620px;
+        height: 45px;
+        border: none;
+    }
+    
+    .postType{
+        outline: solid 1px #d9d9d9;
+        outline-offset: -1px;
+        border-radius: 16px;
+        background-color: #fff;
+        width: 620px;
+        height: 45px;
+        border: none;
+    }
+    .postDescription{
+        
+        outline: solid 1px #d9d9d9;
+        outline-offset: -1px;
+        border-radius: 16px;
+        background-color: #fff;
+        width: 620px;
+        height: 96px;
+        border: none;
+    }
+    
+    .anexar{
+        color: #505153;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+        'Liberation Sans', sans-serif;
+        border-radius: 8px;
+        background-color: #d9d9d9;
+        width: 617px;
+        height: 34px;
+        border: none;
+    }
+    
+    .publicar{
+        border-radius: 8px;
+        background-color: #955e42;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+        'Liberation Sans', sans-serif;
+        width: 617px;
+        height: 34px;
+        border: none;
+    }
+    
+    input::placeholder{
+        color: #505153;
+        font-size: 16px;
+        font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+        'Liberation Sans', sans-serif;
+        margin-left: 10px;
+    }
+}
