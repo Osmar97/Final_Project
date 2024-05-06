@@ -85,22 +85,17 @@ mat-form-field:has(mat-select) div[matformfieldlineripple] {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
 
 }
 
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 400;
-  /* You can change the weight if you need */
-  src: url('https://fonts.gstatic.com/s/montserrat/v15/JTURjIg1_i6t8kCHKm45_cJD3gTD_u50.woff2') format('woff2');
-  /* You may need to update the URL with the correct path to the font file */
-}
+ 
 
 
 body {
   height: 100%;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  /* Fallback to sans-serif if Montserrat isn't available */
+  font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;  /* Fallback to sans-serif if Montserrat isn't available */
 }

@@ -1,17 +1,24 @@
 <!-- popup.component.html -->
 <div class="popup">
 
-    <h2 class="anucio">Publique o seu anúncio</h2>
+    <div class="texto-botaox">
+        <h2 class="anuncio">Publique o seu anúncio</h2>
+        <img (click)="close()" src="../../../assets/fechar.svg" width="20px" alt="">
+    </div>
 
     <div class="line"></div>
 
-    <input type="text" class="postTitle" placeholder="     Titulo"/>
+    <div class="espacamento">
 
-    <input type="text" class="postType" placeholder="     Tipo de anúncio" />
+        <input type="text" class="postTitle" placeholder="Titulo"/>
+    
+        <input type="text" class="postType" placeholder="Tipo de anúncio" />
+    
+        <textarea class="postDescription" placeholder="Descrição"></textarea>
+    
+        <button class="anexar" (click)="attachImage()">Anexar Imagem</button>
+    
+        <button class="publicar" (click)="publishPost()">Publicar</button>
+    </div>
 
-    <input class="postDescription" placeholder="   Descrição"/>
-
-    <button class="anexar" (click)="attachImage()">Anexar Imagem</button>
-
-    <button class="publicar" (click)="publishPost()">Publicar</button>
 </div>

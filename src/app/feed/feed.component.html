@@ -1,7 +1,7 @@
 <div class="navbar">
     <div class="leftSection">
         <div class="logo">
-            <img src="../../../assets/icon castanho.svg" alt="">
+            <img src="../../../assets/icone pequeno.png" alt="">
             <p class="logotext">USHARE</p>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <div class="underline"></div>
         </div>
         <div class="friendsIcon" [class.active]="!isFeedActive" (click)="toggleArtigos()">
-            <img src="assets/vector-icon.svg" class="iconP" />
+            <fa-icon [icon]="faArtigo" class="iconP"></fa-icon>
             <p>Meus artigos</p>
             <div class="underline"></div>
         </div>
@@ -32,7 +32,7 @@
     <div class="meusartigos">
         <div class="box">
             <img src="assets/vector-icon.svg" class="iconPx" />
-            <h2>Meus Artigos</h2>
+            <h3>Os meus artigos</h3>
         </div>
 
         <div class="friends">
@@ -47,15 +47,19 @@
     <div class="publicacoes">
 
         <div class="posts" [class.active]="isFeedActive">
-            <div class="searchbar">
-                <input type="text" placeholder="Solicite ou disponibilize um recurso ...">
-                
-                <div class="paperClipOutline">
-                    <img src="assets/paperclipoutline-icon.svg" alt="" class="icon39" />
+            <div (click)="opensubbtn()" class="searchbar">
+                <p>Solicite ou disponibilize um recurso ...</p>
+
+                <div class="canto">
+
+                    <div class="paperClipOutline">
+                        <img src="assets/paperclipoutline-icon.svg" alt="" class="icon39" />
+                    </div>
+                    <button class="botaoEnviar" >
+                            <img src="assets/send-icon.svg" alt="" class="icon19" />
+                    </button>
                 </div>
-                <button class="botaoEnviar" (click)="opensubbtn()">
-                        <img src="assets/send-icon.svg" alt="" class="icon19" />
-                </button>
+                
             </div>
 
             <div class="post-container">

@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,9 @@ export class PopupPComponent{
   postType: string = "";
   postDescription: string = "";
 
+
+  constructor(private subbtn:MatDialog){}
+
   attachImage() {
     // Add your logic for attaching an image here
     console.log('Image attached!');
@@ -26,4 +29,9 @@ export class PopupPComponent{
     console.log('Post published!');
   }
 
+  close(){
+    this.subbtn.closeAll();
+
+    
+  }
 }

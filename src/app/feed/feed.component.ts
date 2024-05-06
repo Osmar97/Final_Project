@@ -11,8 +11,7 @@ import { EventoComponent } from './evento/evento.component';
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDialog } from '@angular/material/dialog';
 import { PopupPComponent } from './popup-p/popup-p.component';
-
-
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -33,6 +32,7 @@ export class FeedComponent {
   faRightFromBracket=faRightFromBracket;
   faPaperPlane=faPaperPlane;
   faPaperclip=faPaperclip;
+  faArtigo=faClipboardList
 
   constructor(private subbtn:MatDialog) {}
 
