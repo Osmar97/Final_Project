@@ -77,19 +77,24 @@ $circulo-cinza-cor: #D9D9D9;
             font-weight: bold;
             cursor: pointer;
             gap: 5px;
+            color: $icone-cinza-cor;
+            
+            
+            &:hover{
+                color: rgba($main-color, 0.7);
 
+            }
+            
             .iconP {
                 font-size: 24px;
                 font-weight: bold;
                 cursor: pointer;
-                color: $icone-cinza-cor;
             }
 
             p {
                 font-weight: bold;
                 font-size: medium;
                 cursor: pointer;
-                color: $icone-cinza-cor;
 
                 margin: 0;
             }
