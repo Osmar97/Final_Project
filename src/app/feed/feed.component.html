@@ -46,7 +46,7 @@
 
     <div class="publicacoes">
 
-        <div class="posts" [class.active]="isFeedActive">
+        <div class="posts">
             <div (click)="opensubbtn()" class="searchbar">
                 <p>Solicite ou disponibilize um recurso ...</p>
 
@@ -70,6 +70,7 @@
                         </div>
                         <div class="post-author">
                             <p>Name of the Person</p>
+                            <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
                         </div>
                     </div>
                     <div class="line10"></div>
@@ -83,6 +84,7 @@
                             <img src="assets/vector-icon7.svg">
                         </div>
                         <p>Contatar proprietário</p>
+                        
                         <div class="coment">
                             <img src="assets/staroutline-icon6.svg">
                         </div>

@@ -53,7 +53,7 @@ export class LocationSelectionComponent {
       setTimeout(() => {
         console.log('entrou')
         this.iniciarTela()
- 
+
       }, 300);
     } catch (e) {
 
@@ -66,7 +66,7 @@ export class LocationSelectionComponent {
   iniciarTela() {
     this.dists$ = this.authService.obterDistritos();
     this.municipios$ = this.authService.obterMunicipios();
- 
+
     this.dists$.subscribe({
       next: (val) => { this.distritos = val; console.log(this.distritos) 
 
@@ -94,14 +94,13 @@ export class LocationSelectionComponent {
       error: (err) => { console.error(err) }
     })
 
- 
+
 
   }
 
 
   navegarLocationPermission() {
 
-     
     if(!this.distritoAtual || !this.municipioAtual){
       this.erro.openErrorSnackBar('Preencha todos os campos')
     }else{

@@ -20,12 +20,12 @@ export class PopupPComponent{
   constructor(private subbtn:MatDialog){}
 
   attachImage() {
-    // Add your logic for attaching an image here
+    
     console.log('Image attached!');
   }
 
   publishPost() {
-    // Add your logic for publishing the post here
+
     console.log('Post published!');
   }
 
