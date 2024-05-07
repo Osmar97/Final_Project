@@ -18,6 +18,12 @@
         padding-top: 5px;
     }
 
+    .post-content{
+        p{
+            padding: 10px;
+        }
+    }
+
     .comment-sec{
         display: flex;
         align-items: center;
@@ -27,16 +33,19 @@
 
         .info{
             margin-left: 10px;
+            cursor: pointer;
         }
 
         .coment{
             margin-left: 90px;
+            cursor: pointer;
         }
         p{
             display: flex;
             align-items: center;
             justify-items: center;
             padding-top: 5px;
+            cursor: pointer;
         }
     }
 }
