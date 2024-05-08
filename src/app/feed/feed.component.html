@@ -24,7 +24,7 @@
             <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="handleLogoutClick()" />
         </div>
         <div class="profilePhoto">
-            <p>Name of the person </p>
+            <p >Name of the person </p>
         </div>
     </div>
 </div>
@@ -65,14 +65,18 @@
             <div class="post-container">
                 <div class="post">
                     <div class="post-header">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
+                        <div class="conjunto">
+                            <div class="profile-photo">
+                                <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
+                            </div>
+                            <div class="post-author">
+                                <p>Name of the Person</p>
+                                <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
+                            </div>
                         </div>
-                        <div class="post-author">
-                            <p>Name of the Person</p>
-                            <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
-                        </div>
+                        <p class="status">anuncio disponivel</p>
                     </div>
+
                     <div class="line10"></div>
                     <p class="descText">Quem tiver um carro igual a este pfv contacte-me</p>
                     <div class="post-content">
@@ -80,10 +84,10 @@
                     </div>
                     <div class="line11"></div>
                     <div class="comment-sec">
-                        <div class="info">
+                        <div class="info" (click)="openChatbox()" >
                             <img src="assets/vector-icon7.svg">
                         </div>
-                        <p>Contatar proprietário</p>
+                        <p (click)="openChatbox()">Contatar proprietário</p>
                         
                         <div class="coment">
                             <img src="assets/staroutline-icon6.svg">
@@ -97,5 +101,10 @@
 
     <div class="eventos">
         <app-evento/>
+    </div>
+
+
+    <div class="chat">
+        <app-chatbox/>
     </div>
 </div>
