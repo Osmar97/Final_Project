@@ -12,8 +12,8 @@
             <div class="underline"></div>
         </div>
         <div class="friendsIcon" [class.active]="!isFeedActive" (click)="toggleArtigos()">
-            <fa-icon [icon]="faArtigo" class="iconP"></fa-icon>
-            <p>Meus artigos</p>
+            <fa-icon [icon]="faArtigo" class="iconP" (click)="openartg()" ></fa-icon>
+            <p (click)="openartg()" >Meus artigos</p>
             <div class="underline"></div>
         </div>
     </div>
@@ -31,8 +31,8 @@
 <div class="content">
     <div class="meusartigos">
         <div class="box">
-            <img src="assets/vector-icon.svg" class="iconPx" />
-            <h3>Os meus artigos</h3>
+            <img src="assets/vector-icon.svg" class="iconPx"  (click)="openartg()" />
+            <h3 (click)="openartg()" >Os meus artigos</h3>
         </div>
 
         <div class="friends">
@@ -84,10 +84,10 @@
                     </div>
                     <div class="line11"></div>
                     <div class="comment-sec">
-                        <div class="info" (click)="openChatbox()" >
+                        <div class="info"  >
                             <img src="assets/vector-icon7.svg">
                         </div>
-                        <p (click)="openChatbox()">Contatar proprietário</p>
+                        <p>Contatar proprietário</p>
                         
                         <div class="coment">
                             <img src="assets/staroutline-icon6.svg">

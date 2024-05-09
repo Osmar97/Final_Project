@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 
 @Component({

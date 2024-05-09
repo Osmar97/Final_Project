@@ -15,12 +15,13 @@ import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatboxComponent } from './chatbox/chatbox.component';
+import { ArtigosPopupComponent } from './artigos-popup/artigos-popup.component';
 
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule ,ChatboxComponent],
+  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
@@ -37,29 +38,23 @@ export class FeedComponent {
   faPaperclip=faPaperclip;
   faArtigo=faClipboardList
 
-  chatboxVisible: boolean = false;
-
-  openChatbox() {
-      this.chatboxVisible = !this.chatboxVisible;
-  }
-
   
   
   @Input() postCreationDate: Date;
 
-  constructor(private subbtn:MatDialog  ) {
+  constructor(private subbtn:MatDialog , private artbtn:MatDialog ) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
+    
 
   }
 
+  openartg(){
+    this.artbtn.open(ArtigosPopupComponent);
+  }
 
   opensubbtn(){
     this.subbtn.open(PopupPComponent);
-  }
-
-  openchat(){
-
   }
 
   handleSendClick(){
