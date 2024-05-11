@@ -43,6 +43,7 @@
                 <h3>Conexões</h3>
                 <p>(nº)</p>
             </div>
+            
         </div>
     </div>
 
@@ -91,10 +92,10 @@
                         </div>
                         <p (click)="chatboxRef.toggleChatbox()">Contatar proprietário</p>
                         
-                        <div class="coment">
+                        <div class="coment" (click)="opencoment()">
                             <img src="assets/staroutline-icon6.svg">
                         </div>
-                        <p>Comentários</p>
+                        <p (click)="opencoment()">Comentários</p>
                     </div>
                 </div>
             </div>
