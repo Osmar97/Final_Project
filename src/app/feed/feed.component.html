@@ -87,7 +87,7 @@
                         <div class="info"  >
                             <img src="assets/vector-icon7.svg">
                         </div>
-                        <p>Contatar proprietário</p>
+                        <p (click)="chatboxRef.toggleChatbox()">Contatar proprietário</p>
                         
                         <div class="coment">
                             <img src="assets/staroutline-icon6.svg">
@@ -105,6 +105,6 @@
 
 
     <div class="chat">
-        <app-chatbox/>
+        <app-chatbox #chatboxRef/>
     </div>
 </div>
