@@ -16,12 +16,13 @@ import { Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChatboxComponent } from './chatbox/chatbox.component';
 import { ArtigosPopupComponent } from './artigos-popup/artigos-popup.component';
+import { InterresadosComponent } from './interresados/interresados.component';
 
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent],
+  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
