@@ -1,0 +1,86 @@
+<div class="search-popup">
+    <h2 class="titulo">Pesquise anúncios</h2>
+
+    <div class="line"></div>
+    <div class="pesquisa">
+        <input type="text" placeholder="Search...">
+    </div>
+    <div class="filters">
+        <mat-form-field>
+            <mat-label>Dist. Máxima</mat-label>
+            <mat-select>
+              @for (distance of distances; track distance) {
+                <mat-option [value]="distance.value">{{distance.viewValue}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Tipo de anuncio</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let tipoAnuncio of tipoAnuncios" [value]="tipoAnuncio.value">
+                {{ tipoAnuncio.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="custom-mdc-text-field-wrapper">
+            <div class="mat-mdc-form-field-focus-overlay"></div>
+            <div class="mat-mdc-form-field-flex">
+              <div class="mat-mdc-form-field-infix">
+                <label matformfieldfloatinglabel="" class="mdc-floating-label mat-mdc-floating-label mdc-floating-label--float-above" ng-reflect-floating="true" ng-reflect-monitor-resize="false" id="mat-mdc-form-field-label-4" for="mat-input-0">
+                  <mat-label _ngcontent-ng-c66484430="">Estado</mat-label>
+                  <span aria-hidden="true" class="mat-mdc-form-field-required-marker mdc-floating-label--required"></span>
+                </label>
+                <select _ngcontent-ng-c66484430="" matnativecontrol="" required="" class="mat-mdc-input-element mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored" ng-reflect-required="" id="mat-input-0" aria-invalid="false" aria-required="true">
+                  <option _ngcontent-ng-c66484430="" value="novo" ng-reflect-value="novo">Novo</option>
+                  <option _ngcontent-ng-c66484430="" value="usado" ng-reflect-value="usado">Usado</option>
+                </select>
+              </div>
+            </div>
+            <div matformfieldlineripple="" class="mdc-line-ripple mdc-line-ripple--deactivating"></div>
+          </div>
+
+        </div>
+
+    <div class="resultado">
+        <div class="post-container">
+            <div class="post">
+                <div class="post-header">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
+                        </div>
+                        <div class="post-author">
+                            <p>Name of the Person</p>
+                            <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
+                        </div>
+                    </div>
+                    <p class="status">anuncio disponivel</p>
+                </div>
+
+                <div class="line10"></div>
+                <p class="descText">Quem tiver um carro igual a este pfv contacte-me</p>
+                <div class="post-content">
+                    <img width="100%" src="assets/rectangle30.jpeg" class="carpic">
+                </div>
+                <div class="line11"></div>
+                <div class="comment-sec">
+                    <div class="info"  >
+                        <img src="assets/vector-icon7.svg">
+                    </div>
+                    <p>Contatar proprietário</p>
+                    
+                    <div class="coment">
+                        <img src="assets/staroutline-icon6.svg">
+                    </div>
+                    <p >Comentários</p>
+                </div>
+                <div class="line11"></div>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+  
