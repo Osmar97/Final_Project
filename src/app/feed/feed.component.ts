@@ -18,12 +18,13 @@ import { ChatboxComponent } from './chatbox/chatbox.component';
 import { ArtigosPopupComponent } from './artigos-popup/artigos-popup.component';
 import { InterresadosComponent } from './interresados/interresados.component';
 import { ComentariosComponent } from './comentarios/comentarios.component';
+import { SearchComponent } from './search/search.component';
 
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,ComentariosComponent],
+  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,ComentariosComponent ,SearchComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
@@ -44,11 +45,15 @@ export class FeedComponent {
   
   @Input() postCreationDate: Date;
 
-  constructor(private subbtn:MatDialog , private artbtn:MatDialog , private coment:MatDialog ) {
+  constructor(private subbtn:MatDialog , private artbtn:MatDialog , private coment:MatDialog , private search:MatDialog) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
     
 
+  }
+
+  opensearch(){
+    this.search.open(SearchComponent);
   }
 
   opencoment(){
