@@ -19,12 +19,13 @@ import { ArtigosPopupComponent } from './artigos-popup/artigos-popup.component';
 import { InterresadosComponent } from './interresados/interresados.component';
 import { ComentariosComponent } from './comentarios/comentarios.component';
 import { SearchComponent } from './search/search.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,ComentariosComponent ,SearchComponent],
+  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,ComentariosComponent ,SearchComponent,PerfilComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
@@ -45,11 +46,15 @@ export class FeedComponent {
   
   @Input() postCreationDate: Date;
 
-  constructor(private subbtn:MatDialog , private artbtn:MatDialog , private coment:MatDialog , private search:MatDialog) {
+  constructor(private subbtn:MatDialog , private artbtn:MatDialog , private coment:MatDialog , private search:MatDialog , private perfil:MatDialog) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
     
 
+  }
+
+  openperfil(){
+    this.perfil.open(PerfilComponent)
   }
 
   opensearch(){
