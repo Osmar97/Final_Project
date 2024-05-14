@@ -14,11 +14,15 @@ $circulo-cinza-cor: #D9D9D9;
     width: 760px;
     height: 600px;
 
-    .titulo{
-        justify-content: center;
-        display: flex;
-        padding: 10px;
+    .header{
+
+        .titulo{
+            justify-content: center;
+            display: flex;
+            padding: 10px;
+        }
     }
+
 
     .line {
         max-width: 100%;
@@ -51,21 +55,6 @@ $circulo-cinza-cor: #D9D9D9;
         justify-content: space-between;
         display: flex;
         margin-left: 40px;
-
-        .mat-mdc-form-field-flex{
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            margin-left: 10px;
-        }
-
-        .custom-mdc-text-field-wrapper {
-
-            border: 1px solid $borda-cor;
-            background-color: #fff;
-            border-radius: 16px;
-
-          }
 
     }
 

@@ -5,6 +5,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 interface Distance {
   value: number;
@@ -41,17 +42,21 @@ export class SearchComponent implements OnInit{
 
 
   tipoAnuncios: TipoAnuncio[] = [
-    { value: 'event', viewValue: 'Event' },
+    { value: "event", viewValue: 'Event' },
     { value: 'sale', viewValue: 'Sale' },
     { value: 'rent', viewValue: 'Rent' }
   ];
+
+  estados:Estado[]=[
+    {value: "novo" , viewValue: "Novo"}
+  ]
   @Output() search = new EventEmitter<string>();
 
   searchQuery: string = "";
 
   @Input() postCreationDate: Date;
 
-  constructor() { 
+  constructor(private fecha:MatDialog) {
     this.postCreationDate = new Date("2024-01-05T22:05:00");
   }
 
@@ -60,6 +65,11 @@ export class SearchComponent implements OnInit{
 
   performSearch() {
     this.search.emit(this.searchQuery);
+  }
+
+  close(){
+    this.fecha.closeAll();
+
   }
 
 }
