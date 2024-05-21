@@ -20,9 +20,37 @@ $circulo-cinza-cor: #D9D9D9;
   .mdc-dialog__surface {
     border-radius: var(--mdc-dialog-container-shape, 4px);
     border-radius: 16px;
+    overflow: hidden;
+ 
   }
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 10px;
+ }
+
+@media (max-width:750px) {
+  .mat-mdc-dialog-container {
+    height: 100vh;
+    .mdc-dialog__surface {
+      height: 100vh;
+
+    }
+  }
+}
 .mat-mdc-snack-bar-container {
 
   .mdc-snackbar__label {

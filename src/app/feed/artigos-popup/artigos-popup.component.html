@@ -1,38 +1,35 @@
-
 <div class="popup">
 
-    <div class="teste">
 
-        <div class="texto-botaox">
-            <h2 class="anuncio">Os meus anúncios</h2>
-            <img (click)="close()" src="assets/fechar.svg" width="20px">
+    <div class="texto-botaox">
+        <h2 class="anuncio">Os meus anúncios</h2>
+        <img (click)="close()" src="assets/fechar.svg" width="20px">
+    </div>
+    <div class="line"></div>
+
+    <div class="options">
+        <div class="artigos" [class.active]="selectedOption === 'artigos'" (click)="selectOption('artigos')">
+            <img src="assets/patient-list-icon.svg" class="iconArt" />
+            <p class="artSoli">Solicitados</p>
         </div>
-        <div class="line"></div>
 
-        <div class="options">
+        <div class="avaliable" [class.active]="selectedOption === 'avaliable'" (click)="selectOption('avaliable')">
+            <img src="assets/popupA.svg" class="iconAvaliable" />
+            <p class="artDisponiveis">Disponibilizados</p>
+        </div>
 
-            <div class="artigos" [class.active]="selectedOption === 'artigos'" (click)="selectOption('artigos')">
-              <img src="assets/patient-list-icon.svg" class="iconArt" />
-              <p class="artSoli">Artigos Solicitados</p>
-            </div>
+        <div class="alertas" [class.active]="selectedOption === 'alertas'" (click)="selectOption('alertas')">
+            <img src="assets/Bell.svg" class="iconAlerta" />
+            <p class="alertas">Alertas</p>
+        </div>
 
-            <div class="avaliable" [class.active]="selectedOption === 'avaliable'" (click)="selectOption('avaliable')">
-              <img src="assets/popupA.svg" class="iconAvaliable" />
-              <p class="artDisponiveis">Artigos Disponibilizados</p>
-            </div>
+        <div class="eventos" [class.active]="selectedOption === 'eventos'" (click)="selectOption('eventos')">
+            <img src="assets/ClipboardCheckOutline.svg" class="iconEventos" />
+            <p class="eventos">Eventos</p>
+        </div>
 
-            <div class="alertas" [class.active]="selectedOption === 'alertas'" (click)="selectOption('alertas')">
-              <img src="assets/Bell.svg" class="iconAlerta" />
-              <p class="alertas">Alertas</p>
-            </div>
-      
-            <div class="eventos" [class.active]="selectedOption === 'eventos'" (click)="selectOption('eventos')">
-              <img src="assets/ClipboardCheckOutline.svg"class="iconEventos" />
-              <p class="eventos">Eventos</p>
-            </div>
-
-          </div>
-
+    </div>
+    <div class="posts">
         <div class="mypost">
             <div class="owner">
                 <div class="postAuthor">
@@ -59,11 +56,11 @@
             <div class="line"></div>
 
             <div class="bottom-sec">
-                <div class="info"  >
+                <div class="info">
                     <img src="assets/Inter.svg">
                 </div>
                 <p class="inter">Ver interessados</p>
-                
+
                 <div class="coment">
                     <img src="assets/staroutline-icon6.svg">
                 </div>
