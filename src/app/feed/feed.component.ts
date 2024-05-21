@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faRss } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
@@ -41,8 +42,17 @@ export class FeedComponent {
   faPaperPlane=faPaperPlane;
   faPaperclip=faPaperclip;
   faArtigo=faClipboardList
+  faHamb=faBars
 
-  
+  @ViewChild('mySidenav') sidenav!: ElementRef;
+
+  openNav() {
+    this.sidenav.nativeElement.style.width = '250px';
+  }
+
+  closeNav() {
+    this.sidenav.nativeElement.style.width = '0';
+  }
   
   @Input() postCreationDate: Date;
 
@@ -105,5 +115,6 @@ toggleArtigos() {
     this.isFeedActive = false;
     console.log("Artigos are active");
 }
+ 
 
 }

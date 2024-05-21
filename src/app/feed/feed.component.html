@@ -18,15 +18,28 @@
         </div>
     </div>
     <div class="rightSection">
+
         <div class="Icons">
             <img src="assets/search-icon-icon.svg" alt="" class="IconS" (click)="opensearch()" />
             <img src="assets/chat-icon-icon.svg" alt="" class="IconMsg" (click)="handleChatClick()" />
             <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="handleLogoutClick()" />
         </div>
+
         <div class="profilePhoto">
             <p >Name of the person </p>
         </div>
+
+        <fa-icon [icon]="faHamb" class="iconHamb" (click)="openNav()"   ></fa-icon>
     </div>
+    <div #mySidenav class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+        <a href="#">Home</a>
+        <a href="#">Chat</a>
+        <a href="#">Meus Artigos</a>
+        <a href="#">Eventos</a>
+        <a href="#">Sobre nós</a>
+        <a href="#">Logout</a>
+      </div>
 </div>
 
 
