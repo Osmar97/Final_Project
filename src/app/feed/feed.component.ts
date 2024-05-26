@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -26,7 +26,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent , MatDialogModule , CommonModule , ChatboxComponent,ArtigosPopupComponent , InterresadosComponent,ComentariosComponent ,SearchComponent,PerfilComponent],
+  imports: [FontAwesomeModule, EventoComponent, MatDialogModule, CommonModule, ChatboxComponent, ArtigosPopupComponent, InterresadosComponent, ComentariosComponent, SearchComponent, PerfilComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
@@ -34,17 +34,77 @@ export class FeedComponent {
 
   isFeedActive: boolean = true;
 
-  faPeopleGroup=faPeopleGroup;
+  faPeopleGroup = faPeopleGroup;
   faRss = faRss;
-  faMagnifyingGlass=faMagnifyingGlass;
-  faMessage=faMessage;
-  faRightFromBracket=faRightFromBracket;
-  faPaperPlane=faPaperPlane;
-  faPaperclip=faPaperclip;
-  faArtigo=faClipboardList
-  faHamb=faBars
+  faMagnifyingGlass = faMagnifyingGlass;
+  faMessage = faMessage;
+  faRightFromBracket = faRightFromBracket;
+  faPaperPlane = faPaperPlane;
+  faPaperclip = faPaperclip;
+  faArtigo = faClipboardList
+  faHamb = faBars
 
   @ViewChild('mySidenav') sidenav!: ElementRef;
+  @ViewChild('interessados') interessados!: ElementRef;
+  @ViewChild('meusartigosfriends') meusArt!: ElementRef;
+  @ViewChild('publicacoes') pubs!: ElementRef;
+  @ViewChild('eventos') eventos!: ElementRef;
+
+  activeSection: string = 'publicacoes';
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth <= 1000) {
+      this.setActiveSection(this.activeSection)
+    }else{
+      this.displayAllSections();
+    }
+  }
+
+
+  displayAllSections() {
+    this.meusArt.nativeElement.style.display = 'flex';
+    this.pubs.nativeElement.style.display = 'block';
+    this.eventos.nativeElement.style.display = 'block';
+  }
+
+
+  setActiveSection(activeSec:string) {
+
+    this.activeSection=activeSec;
+
+    console.log(activeSec)
+
+    switch (this.activeSection) {
+
+      case 'meusartigos-friends':
+        this.meusArt.nativeElement.style.display = 'flex';
+        this.pubs.nativeElement.style.display = 'none';
+        this.eventos.nativeElement.style.display = 'none';
+        break;
+
+      case 'publicacoes':
+        this.meusArt.nativeElement.style.display = 'none';
+        this.pubs.nativeElement.style.display = 'block';
+        this.eventos.nativeElement.style.display = 'none';
+        break;
+
+      case 'eventos':
+        this.meusArt.nativeElement.style.display = 'none';
+        this.pubs.nativeElement.style.display = 'none';
+        this.eventos.nativeElement.style.display = 'block';
+        break;
+
+      default:
+        break;
+    }
+ 
+  }
+
+  showSection(section: string) {
+    this.activeSection = section;
+  }
+
 
   openNav() {
     this.sidenav.nativeElement.style.width = '250px';
@@ -53,41 +113,41 @@ export class FeedComponent {
   closeNav() {
     this.sidenav.nativeElement.style.width = '0';
   }
-  
+
   @Input() postCreationDate: Date;
 
-  constructor(private subbtn:MatDialog , private artbtn:MatDialog , private coment:MatDialog , private search:MatDialog , private perfil:MatDialog) {
+  constructor(private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
-    
+
 
   }
 
-  openperfil(){
+  openperfil() {
     this.perfil.open(PerfilComponent)
   }
 
-  opensearch(){
+  opensearch() {
     this.search.open(SearchComponent);
   }
 
-  opencoment(){
+  opencoment() {
     this.coment.open(ComentariosComponent);
   }
 
-  openartg(){
+  openartg() {
     this.artbtn.open(ArtigosPopupComponent);
   }
 
-  opensubbtn(){
+  opensubbtn() {
     this.subbtn.open(PopupPComponent);
   }
 
-  handleSendClick(){
+  handleSendClick() {
     console.log('send icon clicked');
   }
 
-  handleAttachClick(){
+  handleAttachClick() {
     console.log('Attach icon clicked');
   }
 
@@ -109,12 +169,12 @@ export class FeedComponent {
   toggleFeed() {
     this.isFeedActive = true;
     console.log("Feed is active");
-}
+  }
 
-toggleArtigos() {
+  toggleArtigos() {
     this.isFeedActive = false;
     console.log("Artigos are active");
-}
- 
+  }
+
 
 }

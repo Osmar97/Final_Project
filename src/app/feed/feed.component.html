@@ -6,14 +6,14 @@
         </div>
     </div>
     <div class="centerSection">
-        <div class="feedIcon" [class.active]="isFeedActive" (click)="toggleFeed()">
+        <div class="feedIcon">
             <fa-icon [icon]="faRss" class="iconRss"></fa-icon>
             <p>Feed</p>
             <div class="underline"></div>
         </div>
-        <div class="friendsIcon" [class.active]="!isFeedActive" (click)="toggleArtigos()">
-            <fa-icon [icon]="faArtigo" class="iconP" (click)="openartg()" ></fa-icon>
-            <p (click)="openartg()" >Meus artigos</p>
+        <div class="friendsIcon"  (click)="openartg()">
+            <fa-icon [icon]="faArtigo" class="iconP" ></fa-icon>
+            <p >Meus artigos</p>
             <div class="underline"></div>
         </div>
     </div>
@@ -21,33 +21,34 @@
 
         <div class="Icons">
             <img src="assets/search-icon-icon.svg" alt="" class="IconS" (click)="opensearch()" />
-            <img src="assets/chat-icon-icon.svg" alt="" class="IconMsg" (click)="handleChatClick()" />
             <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="handleLogoutClick()" />
         </div>
 
         <div class="profilePhoto">
-            <p >Name of the person </p>
+            <p>Name of the person </p>
         </div>
 
-        <fa-icon [icon]="faHamb" class="iconHamb" (click)="openNav()"   ></fa-icon>
+        <fa-icon [icon]="faHamb" class="iconHamb" (click)="openNav()"></fa-icon>
     </div>
     <div #mySidenav class="sidenav">
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-        <a href="#">Home</a>
-        <a href="#">Chat</a>
-        <a href="#">Meus Artigos</a>
-        <a href="#">Eventos</a>
-        <a href="#">Sobre nós</a>
-        <a href="#">Logout</a>
-      </div>
+        <p >Home</p>
+        <p (click)="setActiveSection('meusartigos-friends')"> Chat</p>
+        <p (click)="setActiveSection('publicacoes')">  Meus Artigos</p>
+        <p (click)="setActiveSection('eventos')"> Eventos</p>
+        <p> Sobre nós</p>
+        <p > Logout</p>
+    </div>
 </div>
 
 
 <div class="content">
-    <div class="meusartigos">
-        <div class="box">
-            <img src="assets/vector-icon.svg" class="iconPx"  (click)="openartg()" />
-            <h3 (click)="openartg()" >Os meus artigos</h3>
+
+
+    <div #meusartigosfriends class="meusartigos-friends">
+        <div class="box" (click)="openartg()">
+            <img src="assets/vector-icon.svg" class="iconPx"   />
+            <h3 >Os meus artigos</h3>
         </div>
 
         <div class="friends">
@@ -56,54 +57,167 @@
                 <h3>Conexões</h3>
                 <p>(nº)</p>
             </div>
-            <div class="nomeA">
-                <div class="conjunto">
-                    <div class="profile-photo">
-                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                    </div>
-                    <div class="post-author" (click)="openperfil()">
-                        <p class="nome">Name of the Person</p>
-                        <p class="status"> online</p>
-                    </div>
-                </div>
-            </div>
-            <div class="nomeA">
-                <div class="conjunto">
-                    <div class="profile-photo">
-                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                    </div>
-                    <div class="post-author" (click)="openperfil()">
-                        <p class="nome">Name of the Person</p>
-                        <p class="status"> online</p>
+
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="nomeA">
-                <div class="conjunto">
-                    <div class="profile-photo">
-                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                    </div>
-                    <div class="post-author" (click)="openperfil()">
-                        <p class="nome">Name of the Person</p>
-                        <p class="status1"> offline</p>
-                    </div>
-                </div>
-            </div>
-            <div class="nomeA">
-                <div class="conjunto">
-                    <div class="profile-photo">
-                        <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                    </div>
-                    <div class="post-author" (click)="openperfil()">
-                        <p class="nome">Name of the Person</p>
-                        <p class="status1"> offline</p>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
+                    <div class="conjunto">
+                        <div class="profile-photo">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                        </div>
+                        <div class="post-author">
+                            <p class="nome">Name of the Person</p>
+                            <p class="status"> online</p>
+                        </div>
+                    </div>
+                </div>
+
+
         </div>
     </div>
 
-    <div class="publicacoes">
+    <div #publicacoes class="publicacoes">
 
         <div class="posts">
             <div (click)="opensubbtn()" class="searchbar">
@@ -114,11 +228,11 @@
                     <div class="paperClipOutline">
                         <img src="assets/paperclipoutline-icon.svg" alt="" class="icon39" />
                     </div>
-                    <button class="botaoEnviar" >
-                            <img src="assets/send-icon.svg" alt="" class="icon19" />
+                    <button class="botaoEnviar">
+                        <img src="assets/send-icon.svg" alt="" class="icon19" />
                     </button>
                 </div>
-                
+
             </div>
 
             <div class="post-container">
@@ -129,7 +243,7 @@
                                 <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
                             </div>
                             <div class="post-author" (click)="openperfil()">
-                                <p (click)="openperfil()" >Name of the Person</p>
+                                <p (click)="openperfil()">Name of the Person</p>
                                 <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
                             </div>
                         </div>
@@ -143,11 +257,11 @@
                     </div>
                     <div class="line11"></div>
                     <div class="comment-sec">
-                        <div class="info"  >
+                        <div class="info">
                             <img src="assets/vector-icon7.svg">
                             <p (click)="chatboxRef.toggleChatbox()">Contatar proprietário</p>
                         </div>
-                        
+
                         <div class="coment" (click)="opencoment()">
                             <img src="assets/staroutline-icon6.svg">
                             <p (click)="opencoment()">Comentários</p>
@@ -158,16 +272,16 @@
         </div>
     </div>
 
-    <div class="eventos">
-        <app-evento/>
+    <div #eventos class="eventos">
+        <app-evento />
     </div>
 
 
     <div class="chat">
-        <app-chatbox #chatboxRef/>
+        <app-chatbox #chatboxRef />
     </div>
 
     <div class="inter">
-        <app-interresados/>
+        <app-interresados #interessados />
     </div>
 </div>

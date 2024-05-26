@@ -14,5 +14,9 @@ export class InterresadosComponent {
   togglebox() {
     this.showbox = !this.showbox;
   }
+  
+  close(){
+    (document.getElementById('interessados-popup') as HTMLElement).style.display='none';
 
+  }
 }

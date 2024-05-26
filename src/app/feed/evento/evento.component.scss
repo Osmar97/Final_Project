@@ -1,5 +1,5 @@
 .event {
-    outline: solid 1px #ebebeb;
+    border:  1px solid #ebebeb;
     border-radius: 8px;
     background-color: #fff;
     padding: 5px;
@@ -40,25 +40,38 @@
     .comment-sec{
         display: flex;
         align-items: center;
+        justify-content: space-around;
         gap: 5px;
+        padding: 10px;
         font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
         'Liberation Sans', sans-serif;
 
         .info{
-            margin-left: 70px;
+            display: flex;
             cursor: pointer;
+            gap: 5px;
+            align-items: center;
+            img{
+                width: 15px;
+                height: 15px;
+            }
+            p{
+                margin: 0;
+            }
         }
-
+        
         .coment{
-            margin-left: 60px;
             cursor: pointer;
-        }
-        p{
+            img{
+                width: 20px;
+                height: 20px;
+            }
             display: flex;
             align-items: center;
-            justify-items: center;
-            padding-top: 5px;
-            cursor: pointer;
+            gap: 5px;
+            p{
+                margin: 0;
+            }
         }
     }
 }
