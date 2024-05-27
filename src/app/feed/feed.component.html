@@ -274,6 +274,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="post">
+                    <div class="post-header">
+                        <div class="conjunto">
+                            <div class="profile-photo">
+                                <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                            </div>
+                            <div class="post-author" (click)="openperfil()">
+                                <p (click)="openperfil()">Name of the Person</p>
+                                <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
+                            </div>
+                        </div>
+                        <p class="status">anuncio disponivel</p>
+                    </div>
+
+                    <div class="line10"></div>
+                    <p class="descText">Quem tiver um carro igual a este pfv contacte-me</p>
+                    <div class="post-content">
+                        <img width="100%" src="assets/rectangle30.jpeg" class="carpic">
+                    </div>
+                    <div class="line11"></div>
+                    <div class="comment-sec">
+                        <div class="info">
+                            <img src="assets/vector-icon7.svg">
+                            <p (click)="chatboxRef.toggleChatbox()">Contatar proprietário</p>
+                        </div>
+
+                        <div class="coment" (click)="opencoment()">
+                            <img src="assets/staroutline-icon6.svg">
+                            <p (click)="opencoment()">Comentários</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

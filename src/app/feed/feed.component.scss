@@ -247,6 +247,7 @@ $circulo-cinza-cor: #D9D9D9;
 
     .publicacoes {
         max-height: calc(100vh - 122px);
+        overflow-y: auto;
 
         width: 100%;
 

@@ -1,4 +1,4 @@
-<div id="sideChatBox"class="chatbox-container" [style.display]="showChatbox ? 'block' : 'none'">
+<div id="sideChatBox" class="chatbox-container" [style.display]="showChatbox ? 'block' : 'none'">
     <div class="chatbox-header">
         <div class="profile-photo">
             <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
@@ -19,12 +19,28 @@
     <div class="chatbox-body">
         <div class="message">
             <p class="message-date">23/03/2024 13:55</p>
+            <div class="my-message">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam dolor eos fugit, est eveniet
+                    praesentium enim laboriosam numquam voluptates ea laborum expedita officia dolorum officiis ullam
+                    tempore ad obcaecati culpa?</p>
+            </div>
+            <div class="other-message">
+                <div class="circle"></div>
+
+                <div class="text">
+
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam dolor eos fugit, est eveniet
+                        praesentium enim laboriosam numquam voluptates ea laborum expedita officia dolorum officiis
+                        ullam
+                        tempore ad obcaecati culpa?</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="chatbox-footer">
         <input type="text" placeholder="Type your message...">
-        <button class="botaoEnviar" >
+        <button class="botaoEnviar">
             <img src="assets/Vector.svg" class="icon1" />
         </button>
     </div>
