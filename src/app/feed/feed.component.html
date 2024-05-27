@@ -16,6 +16,11 @@
             <p >Meus artigos</p>
             <div class="underline"></div>
         </div>
+        <div class="aboutIcon" (click)="openAboutUs()">
+            <fa-icon [icon]="faAboutUs" class="iconP"    ></fa-icon>
+            <p >Sobre Nós</p>
+            <div class="underline"></div>
+        </div>
     </div>
     <div class="rightSection">
 
@@ -37,7 +42,7 @@
         <p (click)="setActiveSection('publicacoes')">  Feed</p>
         <p (click)="setActiveSection('eventos')"> Eventos</p>
         <p (click)="openartg()"> Meus Artigos</p>
-        <p> Sobre nós</p>
+        <a href="/aboutUs"> Sobre nós</a>
         <p > Logout</p>
     </div>
 </div>

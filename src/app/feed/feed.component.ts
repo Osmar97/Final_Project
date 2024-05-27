@@ -21,6 +21,7 @@ import { InterresadosComponent } from './interresados/interresados.component';
 import { ComentariosComponent } from './comentarios/comentarios.component';
 import { SearchComponent } from './search/search.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class FeedComponent {
   faPaperclip = faPaperclip;
   faArtigo = faClipboardList
   faHamb = faBars
+  faAboutUs = faPeopleGroup;
 
   @ViewChild('mySidenav') sidenav!: ElementRef;
   @ViewChild('interessados') interessados!: ElementRef;
@@ -68,7 +70,10 @@ export class FeedComponent {
     this.eventos.nativeElement.style.display = 'block';
   }
 
+  openAboutUs(){
+    this.router.navigate(['/aboutUs'])
 
+  }
   setActiveSection(activeSec:string) {
 
     this.activeSection=activeSec;
@@ -116,7 +121,7 @@ export class FeedComponent {
 
   @Input() postCreationDate: Date;
 
-  constructor(private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
+  constructor(private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
 

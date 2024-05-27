@@ -7,6 +7,7 @@ import { LocationPermissionComponent } from './autenticacao/location-permission/
 import { NgModule } from '@angular/core';
 import { FeedComponent } from './feed/feed.component';
 import { FormsModule } from '@angular/forms';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path: 'LocationSelection', component:  LocationSelectionComponent},
     {path: 'locationpermision',component:LocationPermissionComponent},
     {path: 'feed', component:FeedComponent},
+    {path: 'aboutUs', component:AboutUsComponent},
 
   ];
 
