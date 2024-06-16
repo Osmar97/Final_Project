@@ -46,6 +46,19 @@ export class FeedComponent {
   faHamb = faBars
   faAboutUs = faPeopleGroup;
 
+  dadosUtilizador:any={
+    id:'',
+    id_dist:'',
+    id_munic:'',
+    nome:'',
+    coordenadasmorada:'',
+    email:'',
+    nif:'',
+    tipouser:''
+
+
+  };
+
   @ViewChild('mySidenav') sidenav!: ElementRef;
   @ViewChild('interessados') interessados!: ElementRef;
   @ViewChild('meusartigosfriends') meusArt!: ElementRef;
@@ -53,6 +66,27 @@ export class FeedComponent {
   @ViewChild('eventos') eventos!: ElementRef;
 
   activeSection: string = 'publicacoes';
+
+  ngAfterViewInit():void{
+    setTimeout(() => {
+      let dados:any = JSON.parse(String(localStorage.getItem('user')))
+
+      this.dadosUtilizador={
+        nome:dados.nome,
+        id:dados.id,
+        id_dist:dados.id_dist,
+        id_munic:dados.id_munic,
+        coordenadasmorada:dados.coordenadasmorada,
+        email:dados.email,
+        nif:dados.nif,
+        tipouser:dados.tipouser
+      }
+      console.log(this.dadosUtilizador)
+
+
+      
+    }, 100);
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

@@ -17,6 +17,16 @@ export class LoginComponent {
 
   email: string = '';
   password: string = '';
+  dadosUtilizador:any={
+    nome:'',
+    id:'',
+    id_dist:'',
+    id_munic:'',
+    coordenadasmorada:'',
+    email:'',
+    nif:'',
+    tipouser:''
+  }
 
   constructor(private router: Router, private authService: AutenticacaoService, private erro: MensagemErroService) { }
 
@@ -35,7 +45,7 @@ export class LoginComponent {
 
     res$.subscribe({
       next: (user) => {
-        console.log(user)
+
         localStorage.setItem('user',user.id)
         this.router.navigate(['/feed']); // Navigate to the user page
 
@@ -79,8 +89,21 @@ export class LoginComponent {
     this.token$.subscribe({
       next: (value) => {
 
+        this.dadosUtilizador={
+          nome:value.user.nome,
+          id:value.user.id,
+          id_dist:value.user.id_dist,
+          id_munic:value.user.id_munic,
+          coordenadasmorada:value.user.coordenadasmorada,
+          email:value.user.email,
+          nif:value.user.nif,
+          tipouser:value.user.tipouser
+        }
+        console.log(this.dadosUtilizador)
+        localStorage.setItem('user',JSON.stringify(this.dadosUtilizador))
 
-        console.log('Observable emitted the next value: ' + value)
+
+        console.log('Observable emitted the next value: ', value)
         this.authService.setCookie('token', value.token)
         this.router.navigate(['/feed']);
 
