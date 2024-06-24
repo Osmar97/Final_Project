@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "unityShare": {
+    "ushare": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,6 +42,11 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }],
               "budgets": [
                 {
                   "type": "initial",
@@ -68,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "unityShare:build:production"
+              "buildTarget": "ushare:build:production"
             },
             "development": {
-              "buildTarget": "unityShare:build:development"
+              "buildTarget": "ushare:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "unityShare:build"
+            "buildTarget": "ushare:build"
           }
         },
         "test": {
