@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PostsService {
 
-  url='http://localhost:3000'
+  url='https://servidor-ushare.vercel.app'
   constructor(private http: HttpClient) { }
 
   publicarAnuncio(anuncio:any): Observable<any> {

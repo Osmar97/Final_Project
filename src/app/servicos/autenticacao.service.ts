@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AutenticacaoService {
 
-  url='http://localhost:3000'
+  url='https://servidor-ushare.vercel.app'
   constructor(private http: HttpClient,private cookieService: CookieService) { }
 
   login(email: string, password: string): Observable<any> {
