@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { FormsModule } from '@angular/forms';
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 @Component({
   selector: 'app-registro',
@@ -31,7 +32,7 @@ export class RegistroComponent implements AfterViewInit {
   };
 
 
-  constructor(private router: Router, private erro: MensagemErroService) { }
+  constructor(private router: Router, private erro: MensagemErroService, private localStore:LocalStorageService) { }
 
   navegarLogin() {
     // Navigate to the new route programmatically
@@ -41,7 +42,7 @@ export class RegistroComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     try {
       setTimeout(() => {
-        this.email = JSON.parse(String(localStorage.getItem('user'))).email
+        this.email = JSON.parse(String(this.localStore.getItem('user'))).email
       }, 100);
     } catch (e) {
     }
@@ -67,7 +68,7 @@ export class RegistroComponent implements AfterViewInit {
       this.usuario.email = this.email;
       this.usuario.password = this.password;
 
-      localStorage.setItem('user', JSON.stringify(this.usuario))
+      this.localStore.setItem('user', JSON.stringify(this.usuario))
 
       this.router.navigate(['/registro/UserInfoRegistration']);
 

@@ -22,6 +22,7 @@ import { ComentariosComponent } from './comentarios/comentarios.component';
 import { SearchComponent } from './search/search.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../servicos/local-storage.service';
 
 
 @Component({
@@ -66,10 +67,11 @@ export class FeedComponent {
   @ViewChild('eventos') eventos!: ElementRef;
 
   activeSection: string = 'publicacoes';
+ 
 
   ngAfterViewInit():void{
     setTimeout(() => {
-      let dados:any = JSON.parse(String(localStorage.getItem('user')))
+      let dados:any = JSON.parse(String(this.localStore.getItem('user')))
 
       this.dadosUtilizador={
         nome:dados.nome,
@@ -155,7 +157,7 @@ export class FeedComponent {
 
   @Input() postCreationDate: Date;
 
-  constructor(private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
+  constructor( private localStore:LocalStorageService,private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
 
     this.postCreationDate = new Date("2024-01-05T22:05:00");
 

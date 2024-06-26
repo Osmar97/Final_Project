@@ -11,6 +11,7 @@ import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { Observable } from 'rxjs';
 import { error } from 'console';
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 interface Distrito {
   value: string;
@@ -45,7 +46,7 @@ export class LocationSelectionComponent {
 
 
 
-  constructor(private router: Router, private authService: AutenticacaoService,private erro:MensagemErroService) { }
+  constructor(private router: Router, private authService: AutenticacaoService,private erro:MensagemErroService, private localStore:LocalStorageService) { }
 
   ngAfterViewInit(): void {
     try {
@@ -72,7 +73,7 @@ export class LocationSelectionComponent {
 
         this.municipios$.subscribe({
           next: (val) => { this.todosMunicipios = val;console.log(this.todosMunicipios)
-            this.utilizador = JSON.parse(String(localStorage.getItem('user')))
+            this.utilizador = JSON.parse(String(this.localStore.getItem('user')))
             console.log(this.utilizador)
             if (this.utilizador.id_dist != 0) {
               
@@ -108,7 +109,7 @@ export class LocationSelectionComponent {
       this.utilizador.id_dist=this.distritoAtual 
       this.utilizador.id_munic=this.municipioAtual
   
-      localStorage.setItem('user', JSON.stringify(this.utilizador))
+      this.localStore.setItem('user', JSON.stringify(this.utilizador))
   
       // Navigate to the new route programmatically
       this.router.navigate(['/locationpermision']);

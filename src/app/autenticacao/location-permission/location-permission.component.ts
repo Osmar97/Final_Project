@@ -5,6 +5,7 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from '../../servicos/autenticacao.service';
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 @Component({
   selector: 'app-location-permission',
@@ -19,11 +20,11 @@ export class LocationPermissionComponent {
   utilizador:any;
   coordenadas:any;
   registrar$!:Observable<any>;
-  constructor(private router: Router,private authService:AutenticacaoService,private erro:MensagemErroService){}
+  constructor(private router: Router,private authService:AutenticacaoService,private erro:MensagemErroService, private localStore:LocalStorageService){}
 
   ngAfterViewInit(){
     try{
-      this.utilizador = JSON.parse(String(localStorage.getItem('user')))
+      this.utilizador = JSON.parse(String(this.localStore.getItem('user')))
 
     }catch(e){
 
@@ -44,7 +45,7 @@ export class LocationPermissionComponent {
 
       this.registrar$.subscribe({
         next:(val=>{console.log(val); this.router.navigate(['/feed']);
-        localStorage.setItem('user',JSON.stringify(val));
+        this.localStore.setItem('user',JSON.stringify(val));
         this.authService.setCookie('token',val.token)
 
 

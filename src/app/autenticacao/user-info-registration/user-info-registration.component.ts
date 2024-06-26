@@ -5,6 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 
 interface Usuario {
@@ -32,13 +33,13 @@ export class UserInfoRegistrationComponent {
 
   utilizador!: any
 
-  constructor(private router: Router,private erro:MensagemErroService) { }
+  constructor(private router: Router,private erro:MensagemErroService, private localStore:LocalStorageService) { }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
       
       try {
-        this.utilizador = JSON.parse(String(localStorage.getItem('user')))
+        this.utilizador = JSON.parse(String(this.localStore.getItem('user')))
         if (this.utilizador.nome!='')
           this.nome = this.utilizador.nome;
         if (this.utilizador.nif != 0)
@@ -134,7 +135,7 @@ export class UserInfoRegistrationComponent {
       }
 
 
-      localStorage.setItem('user', JSON.stringify(this.utilizador))
+      this.localStore.setItem('user', JSON.stringify(this.utilizador))
 
       this.router.navigate(['/LocationSelection']);
 

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { jwtDecode } from 'jwt-decode'; // Import jwt-decode library for decoding JWT tokens
 import { MensagemErroService } from '../../servicos/mensagem-erro.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
     tipouser:''
   }
 
-  constructor(private router: Router, private authService: AutenticacaoService, private erro: MensagemErroService) { }
+  constructor(private router: Router, private authService: AutenticacaoService, private erro: MensagemErroService, private localStore:LocalStorageService) { }
 
   navegarRegistro() {
     // Navigate to the new route programmatically
@@ -46,7 +47,7 @@ export class LoginComponent {
     res$.subscribe({
       next: (user) => {
 
-        localStorage.setItem('user',user.id)
+        this.localStore.setItem('user',user.id)
         this.router.navigate(['/feed']); // Navigate to the user page
 
       },
@@ -55,7 +56,6 @@ export class LoginComponent {
         console.error(err)
       }
     })
-
 
   }
   ngAfterViewInit(): void {
@@ -100,7 +100,7 @@ export class LoginComponent {
           tipouser:value.user.tipouser
         }
         console.log(this.dadosUtilizador)
-        localStorage.setItem('user',JSON.stringify(this.dadosUtilizador))
+        this.localStore.setItem('user',JSON.stringify(this.dadosUtilizador))
 
 
         console.log('Observable emitted the next value: ', value)
