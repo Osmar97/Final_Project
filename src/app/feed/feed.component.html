@@ -37,7 +37,7 @@
     </div>
     <div #mySidenav class="sidenav">
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-        <p >Home</p>
+        <p (click)="setActiveSection('publicacoes')">Home</p>
         <p (click)="setActiveSection('meusartigos-friends')"> Chat</p>
         <p (click)="setActiveSection('publicacoes')">  Feed</p>
         <p (click)="setActiveSection('eventos')"> Eventos</p>
