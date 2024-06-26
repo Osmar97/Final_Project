@@ -23,6 +23,7 @@ import { SearchComponent } from './search/search.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -71,7 +72,13 @@ export class FeedComponent {
 
   ngAfterViewInit():void{
     setTimeout(() => {
-      let dados:any = JSON.parse(String(this.localStore.getItem('user')))
+
+      let userdata:string=this.localStore.getItem('user')!;
+      if(userdata){
+
+      
+      let dados:any  = JSON.parse(userdata)
+      console.log(dados)
 
       this.dadosUtilizador={
         nome:dados.nome,
@@ -83,8 +90,10 @@ export class FeedComponent {
         nif:dados.nif,
         tipouser:dados.tipouser
       }
-      console.log(this.dadosUtilizador)
 
+
+      console.log(this.dadosUtilizador)
+    }
 
       
     }, 100);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,28 +9,20 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 export class LocalStorageService {
   private storage:any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
-    this.storage = sessionStorage;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private cookieService: CookieService) { 
+    this.storage ;
   }
 
   isLocalStorageAvailable(): boolean {
     return typeof window !== 'undefined' && typeof sessionStorage !== 'undefined';
   }
-  setItem(key: string, value: any): boolean {
-    if (!isPlatformBrowser(this.platformId  )){
-      this.storage.setItem(key, value);
-      return true;
-    }
-    return false;
+  setItem(key: string, value: string): void {
+    this.cookieService.set(key, value);
   }
 
-  getItem(key: string): any {
-    if (!isPlatformBrowser(this.platformId  )){
-      return JSON.parse(JSON.stringify(this.storage.getItem(key)));
-    }
-
-
-    return {};
+  // Método para obter um cookie
+  getItem(key: string): string | undefined {
+    return this.cookieService.get(key);
   }
 
 }
