@@ -75,15 +75,14 @@ export class LocationSelectionComponent {
           next: (val) => { this.todosMunicipios = val;console.log(this.todosMunicipios)
 
             let userdata: string = this.localStore.getItem('user')!;
+            console.log(userdata)
+            let dados: any;
             if (userdata) {
-    
-    
-              let dados: any = JSON.parse(userdata)
-              this.utilizador = JSON.parse(dados)
-    
+              dados= JSON.parse(userdata)
+              this.utilizador = dados
             }
- 
-            if (this.utilizador.id_dist != 0) {
+
+            if (this.utilizador && this.utilizador.id_dist != 0) {
               
               let a=this.distritos.filter((val)=>val.id==this.utilizador.id_dist)[0];
               console.log(a,"aqui")

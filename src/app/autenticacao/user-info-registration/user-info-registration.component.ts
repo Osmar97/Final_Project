@@ -41,13 +41,14 @@ export class UserInfoRegistrationComponent {
       try {
 
         let userdata: string = this.localStore.getItem('user')!;
+        console.log(userdata)
+        let dados: any;
         if (userdata) {
-
-
-          let dados: any = JSON.parse(userdata)
-          this.utilizador = JSON.parse(dados)
-
+          dados= JSON.parse(userdata)
+          this.utilizador = dados
         }
+
+        console.log(this.utilizador)
         if (this.utilizador.nome!='')
           this.nome = this.utilizador.nome;
         if (this.utilizador.nif != 0)
