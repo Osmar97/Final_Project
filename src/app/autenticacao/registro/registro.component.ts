@@ -32,7 +32,7 @@ export class RegistroComponent implements AfterViewInit {
   };
 
 
-  constructor(private router: Router, private erro: MensagemErroService, private localStore:LocalStorageService) { }
+  constructor(private router: Router, private erro: MensagemErroService, private localStore: LocalStorageService) { }
 
   navegarLogin() {
     // Navigate to the new route programmatically
@@ -42,7 +42,15 @@ export class RegistroComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     try {
       setTimeout(() => {
-        this.email = JSON.parse(String(this.localStore.getItem('user'))).email
+
+        let userdata: string = this.localStore.getItem('user')!;
+        if (userdata) {
+
+
+          let dados: any = JSON.parse(userdata)
+          this.email = JSON.parse(dados).email
+
+        }
       }, 100);
     } catch (e) {
     }
@@ -72,18 +80,18 @@ export class RegistroComponent implements AfterViewInit {
 
       this.router.navigate(['/registro/UserInfoRegistration']);
 
-    } 
-    
+    }
+
     if (this.password == '' || this.email == '') {
 
       this.erro.openErrorSnackBar('Preencha todos os campos')
 
-    } 
-     if (!this.isValidEmail(this.email)) {
+    }
+    if (!this.isValidEmail(this.email)) {
       this.erro.openErrorSnackBar("Formato do email incorreto")
-      
-    } 
-     if (this.password != this.passwordConfirm) {
+
+    }
+    if (this.password != this.passwordConfirm) {
       this.erro.openErrorSnackBar('Palavras passe não coincidem')
 
     }

@@ -39,7 +39,15 @@ export class UserInfoRegistrationComponent {
     setTimeout(() => {
       
       try {
-        this.utilizador = JSON.parse(String(this.localStore.getItem('user')))
+
+        let userdata: string = this.localStore.getItem('user')!;
+        if (userdata) {
+
+
+          let dados: any = JSON.parse(userdata)
+          this.utilizador = JSON.parse(dados)
+
+        }
         if (this.utilizador.nome!='')
           this.nome = this.utilizador.nome;
         if (this.utilizador.nif != 0)

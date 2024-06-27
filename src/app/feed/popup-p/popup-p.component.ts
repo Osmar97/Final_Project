@@ -9,6 +9,7 @@ import { UploadService } from '../../servicos/upload.service';
 import { Observable } from 'rxjs';
 import { PostsService } from '../../servicos/posts.service';
 import { MensagemSucessoService } from '../../servicos/mensagem-sucesso.service';
+import { LocalStorageService } from '../../servicos/local-storage.service';
 
 
 interface TipoPost {
@@ -66,14 +67,20 @@ export class PopupPComponent {
   imageUrl: string | ArrayBuffer | null = null;
 
 
-  constructor(private upload: UploadService, private subbtn: MatDialog, private posts:PostsService, private msnSucesso:MensagemSucessoService) {
+  constructor(private upload: UploadService, private subbtn: MatDialog, private posts:PostsService, private msnSucesso:MensagemSucessoService,private localStore:LocalStorageService) {
 
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      let dados: any = JSON.parse(String(localStorage.getItem('user')))
+      let userdata: string = this.localStore.getItem('user')!;
+      let dados:any;
+      if (userdata) {
 
+
+        dados = JSON.parse(userdata)
+
+      }
       this.dadosUtilizador = {
         nome: dados.nome,
         id: dados.id,
