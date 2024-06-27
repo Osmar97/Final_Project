@@ -47,7 +47,7 @@ export class LoginComponent {
     res$.subscribe({
       next: (user) => {
 
-        this.localStore.setItem('user',user.id)
+        //this.localStore.setItem('user',user.id)
         this.router.navigate(['/feed']); // Navigate to the user page
 
       },
