@@ -1,4 +1,3 @@
-
 <div class="popup">
 
     <div class="teste">
@@ -11,95 +10,59 @@
 
         <div class="mypost">
             <div class="owner">
-            <div class="postAuthor">
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
-                </div>
-                <div class="post-author">
-                    <p class="nome">Name of the Person</p>
-                    <p class="data">{{ postCreationDate | date:'dd.MM.yyyy HH:mm' }}</p>
-                </div>
-                
+                <div class="postAuthor">
+                    <div class="profile-photo">
+                        <img src="assets/ellipse-1-icon.svg">
+                    </div>
+                    <div class="post-author">
+                        <p class="nome">{{data.nomeAutor}}</p>
+                        <p class="data">{{ data.datadepub | date:'dd.MM.yyyy' }}</p>
+                    </div>
+
 
                 </div>
-                
-            <p>texto</p>
 
-            <div class="post-content">
-                <img width="100%" src="assets/rectangle30.jpeg" class="carpic">
-            </div>
+                <p>{{data.descricao}}</p>
 
-            <p class="comentariosNumero">nº comentarios</p>
+                <div class="post-content">
+                    <img width="100%" src="{{data.linkimagem}}" class="carpic">
+                </div>
 
-            <div class="line"></div>
+                <p class="comentariosNumero">{{this.comentarios.length}} Comentários </p>
 
-            
-            <div class="comment-sec">
+                <div class="line"></div>
+
+
+
+                <div class="comment-sec" *ngFor="let comentario of comentarios">
+                    <div class="profile-photo">
+                        <img src="assets/ellipse-1-icon.svg">
+                    </div>
+                    <div class="Textsection">
+                        <p class="nome">{{ comentario.nomeAutor }}</p>
+                        <p  class="comentario">{{ comentario.comentario }}</p>
+                    </div>
+                </div>
+
+
+
+
+                <div class="line"></div>
+
+                <div class="footer">
+
                     <div class="profile-photo">
                         <img src="assets/ellipse-1-icon.svg">
                     </div>
 
-                    <div class="Textsection">
-                        <p class="nome">name of the person</p>
-                        <p class="comentario">labalsbflvsnvljas</p>
-                    </div>
-            </div>
+                    <input #commentField type="text" placeholder="Escreva um comentário">
 
-            <div class="comment-sec">
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
+                    <button (click)="enviarComentario()" class="botaoEnviar">
+                        <img src="assets/Vector.svg" class="icon1" />
+                    </button>
+
                 </div>
 
-                <div class="Textsection">
-                    <p class="nome">name of the person</p>
-                    <p class="comentario">labalsbflvsnvljas</p>
-                </div>
-            </div>
-
-            <div class="comment-sec">
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
-                </div>
-
-                <div class="Textsection">
-                    <p class="nome">name of the person</p>
-                    <p class="comentario">labalsbflvsnvljas</p>
-                </div>
-            </div>
-            <div class="comment-sec">
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
-                </div>
-
-                <div class="Textsection">
-                    <p class="nome">name of the person</p>
-                    <p class="comentario">labalsbflvsnvljas</p>
-                </div>
-            </div>
-
-            <div class="comment-sec">
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
-                </div>
-
-                <div class="Textsection">
-                    <p class="nome">name of the person</p>
-                    <p class="comentario">labalsbflvsnvljas</p>
-                </div>
-            </div>
-
-            <div class="line"></div>
-
-            <div class="footer">
-
-                <div class="profile-photo">
-                    <img src="assets/ellipse-1-icon.svg">
-                </div>
-
-                <input type="text" placeholder="Escreva um comentário">
 
             </div>
-
-
-    </div>
-</div>
+        </div>

@@ -59,9 +59,9 @@ export class PopupPComponent {
   file!: File;
 
   tipoPosts: TipoPost[] = [
-    { value: 'alerta', viewValue: 'Alerta' },
-    { value: 'solArtigo', viewValue: 'Solicitação de artigo' },
-    { value: 'dispArt', viewValue: 'Disponibilização de artigo' },
+    { value: 'Alerta', viewValue: 'Alerta' },
+    { value: 'Solicitação de artigo', viewValue: 'Solicitação de artigo' },
+    { value: 'Disponibilização de artigo', viewValue: 'Disponibilização de artigo' },
   ];
 
   imageUrl: string | ArrayBuffer | null = null;

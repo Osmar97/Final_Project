@@ -24,6 +24,9 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../servicos/local-storage.service';
 import { stringify } from 'querystring';
+import { PostsService } from '../servicos/posts.service';
+import { Observable } from 'rxjs';
+import { GetsService } from '../servicos/gets.service';
 
 
 @Component({
@@ -48,15 +51,15 @@ export class FeedComponent {
   faHamb = faBars
   faAboutUs = faPeopleGroup;
 
-  dadosUtilizador:any={
-    id:'',
-    id_dist:'',
-    id_munic:'',
-    nome:'',
-    coordenadasmorada:'',
-    email:'',
-    nif:'',
-    tipouser:''
+  dadosUtilizador: any = {
+    id: '',
+    id_dist: '',
+    id_munic: '',
+    nome: '',
+    coordenadasmorada: '',
+    email: '',
+    nif: '',
+    tipouser: ''
 
 
   };
@@ -67,35 +70,45 @@ export class FeedComponent {
   @ViewChild('publicacoes') pubs!: ElementRef;
   @ViewChild('eventos') eventos!: ElementRef;
 
-  activeSection: string = 'publicacoes';
- 
+  posts: any[] = []
 
-  ngAfterViewInit():void{
+  activeSection: string = 'publicacoes';
+
+  constructor(private getServ: GetsService, private localStore: LocalStorageService, private router: Router, private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
+
+    this.postCreationDate = new Date("2024-01-05T22:05:00");
+
+
+  }
+
+  ngAfterViewInit(): void {
     setTimeout(() => {
 
-      let userdata:string=this.localStore.getItem('user')!;
-      if(userdata){
+      let userdata: string = this.localStore.getItem('user')!;
+      if (userdata) {
 
-      
-      let dados:any  = JSON.parse(userdata)
-      console.log(dados)
 
-      this.dadosUtilizador={
-        nome:dados.nome,
-        id:dados.id,
-        id_dist:dados.id_dist,
-        id_munic:dados.id_munic,
-        coordenadasmorada:dados.coordenadasmorada,
-        email:dados.email,
-        nif:dados.nif,
-        tipouser:dados.tipouser
+        let dados: any = JSON.parse(userdata)
+        console.log(dados)
+
+        this.dadosUtilizador = {
+          nome: dados.nome,
+          id: dados.id,
+          id_dist: dados.id_dist,
+          id_munic: dados.id_munic,
+          coordenadasmorada: dados.coordenadasmorada,
+          email: dados.email,
+          nif: dados.nif,
+          tipouser: dados.tipouser
+        }
+
+
+        console.log(this.dadosUtilizador)
+
+        this.getPosts()
       }
 
 
-      console.log(this.dadosUtilizador)
-    }
-
-      
     }, 100);
   }
 
@@ -103,8 +116,90 @@ export class FeedComponent {
   onResize(event: any) {
     if (window.innerWidth <= 1000) {
       this.setActiveSection(this.activeSection)
-    }else{
+    } else {
       this.displayAllSections();
+    }
+  }
+
+
+  verInteressados() {
+    (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+    this.subbtn.closeAll();
+
+  }
+
+
+  getPosts() {
+    let userdata = String(this.localStore.getItem('user'))
+    if (userdata) {
+
+      let data = JSON.parse(userdata)
+
+      console.log(data)
+      let anuncios$ = this.getServ.verAnunciosDoMunicipio(data.id_munic)
+      anuncios$.subscribe(
+        {
+          next: (val) => {
+
+            this.posts = val
+            let i = 0;
+
+            for (let post of this.posts) {
+
+              let autores$: Observable<any> = this.getServ.obterAutor(post.id_user)
+              autores$.subscribe({
+                next: (autor) => {
+
+                  console.log(autor)
+
+
+                  let nome: string = autor[0].nome;
+                  let id: number = autor[0].id;
+                  let id_dist: number = autor[0].id_dist;
+                  let id_munic: number = autor[0].id_munic;
+                  let coordenadasmorada: string = autor[0].coordenadasmorada;
+                  let email: string = autor[0].email;
+                  let nif: string = autor[0].nif;
+                  let tipouser: string = autor[0].tipouser;
+
+
+                  this.posts[i] = {
+                    ...this.posts[i], nomeAutor: nome,
+                    meuId:this.dadosUtilizador.id,
+                    idAutor: id,
+                    id_distAutor: id_dist,
+                    id_municAutor: id_munic,
+                    coordenadasmoradaAutor: coordenadasmorada,
+                    emailAutor: email,
+                    nifAutor: nif,
+                    tipoUserAutor: tipouser,
+                    meuPost: this.dadosUtilizador.id == id
+
+                  }
+                  i++;
+
+                  console.log(this.posts)
+
+                },
+
+                error: (err) => {
+                  console.error(err)
+                }
+              })
+
+            }
+
+            console.log(val)
+
+          },
+
+          error: (err) => {
+
+            console.log(err)
+
+          }
+        }
+      )
     }
   }
 
@@ -115,13 +210,13 @@ export class FeedComponent {
     this.eventos.nativeElement.style.display = 'block';
   }
 
-  openAboutUs(){
+  openAboutUs() {
     this.router.navigate(['/aboutUs'])
 
   }
-  setActiveSection(activeSec:string) {
+  setActiveSection(activeSec: string) {
 
-    this.activeSection=activeSec;
+    this.activeSection = activeSec;
 
     console.log(activeSec)
 
@@ -148,7 +243,7 @@ export class FeedComponent {
       default:
         break;
     }
- 
+
   }
 
   showSection(section: string) {
@@ -166,12 +261,7 @@ export class FeedComponent {
 
   @Input() postCreationDate: Date;
 
-  constructor( private localStore:LocalStorageService,private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
 
-    this.postCreationDate = new Date("2024-01-05T22:05:00");
-
-
-  }
 
   openperfil() {
     this.perfil.open(PerfilComponent)
@@ -181,12 +271,16 @@ export class FeedComponent {
     this.search.open(SearchComponent);
   }
 
-  opencoment() {
-    this.coment.open(ComentariosComponent);
+  opencoment(post: any) {
+    this.coment.open(ComentariosComponent, {
+      data:post
+    });
   }
 
-  openartg() {
-    this.artbtn.open(ArtigosPopupComponent);
+  openartg(post:any) {
+    this.artbtn.open(ArtigosPopupComponent,{
+      data:post
+    });
   }
 
   opensubbtn() {

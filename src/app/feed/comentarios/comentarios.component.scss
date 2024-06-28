@@ -162,6 +162,12 @@ $circulo-cinza-cor: #D9D9D9;
     }
 }
 
+.botaoEnviar{
+    border: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
 @media (max-width:750px) {
     .popup {
         width: 100%;

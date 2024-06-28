@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { FeedComponent } from './feed/feed.component';
 import { FormsModule } from '@angular/forms';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ComentariosComponent } from './feed/comentarios/comentarios.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
@@ -22,6 +23,7 @@ export const routes: Routes = [
   ];
 
   @NgModule({
+
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
   })
