@@ -53,7 +53,7 @@ export class FeedComponent {
   faArtigo = faClipboardList
   faHamb = faBars
   faAboutUs = faPeopleGroup;
-  anuncio=''
+  anuncio = ''
 
   dadosUtilizador: any = {
     id: '',
@@ -70,6 +70,7 @@ export class FeedComponent {
 
   @ViewChild('mySidenav') sidenav!: ElementRef;
   @ViewChild('interessados') interessados!: ElementRef;
+  @ViewChild('interessados') interessadosComponent!: InterresadosComponent;
   @ViewChild('meusartigosfriends') meusArt!: ElementRef;
   @ViewChild('publicacoes') pubs!: ElementRef;
   @ViewChild('eventos') eventos!: ElementRef;
@@ -140,27 +141,30 @@ export class FeedComponent {
   }
 
 
-  verInteressados(post:any) {
+  verInteressados(post: any) {
 
-    let resp$:Observable<any>=this.getServ.obterInteressadosAnuncio(post.id);
+    let resp$: Observable<any> = this.getServ.obterInteressadosAnuncio(post.id);
 
     resp$.subscribe({
-      next:(val)=>{
+      next: (val) => {
 
-        this.interess=val;
+        this.interess = val;
+        
+        this.interessadosComponent.fetchdata();
+        setTimeout(() => {
+          (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+        }, 100);
 
-        (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
-    
         this.subbtn.closeAll();
-       },
-      error:(err)=>{
+      },
+      error: (err) => {
         (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
-    
+
         this.subbtn.closeAll();
         console.error(err)
       }
     });
- 
+
 
 
   }

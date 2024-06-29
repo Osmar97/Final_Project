@@ -12,15 +12,29 @@ export class InterresadosComponent {
 
   showbox: boolean = false;
 
-  @Input('post') post:any;
+  @Input('post') post: any;
+  users: any[] = []
+  titulo:string=''
 
-  togglebox() {
-    this.showbox = !this.showbox;
+  fetchdata() {
+    let i = 0;
+    this.users=[]
+    this.post.forEach((element: any) => {
+      if (i < this.post.length - 1)
+        this.users.push(element)
+      else{
+        console.log(element)
+        this.titulo=element.titulo
+      }
+
+      i++
+
+    });
   }
-  
-  close(){
-    console.log(this.post);
-    (document.getElementById('interessados-popup') as HTMLElement).style.display='none';
+
+  close() {
+
+    (document.getElementById('interessados-popup') as HTMLElement).style.display = 'none';
 
   }
 }
