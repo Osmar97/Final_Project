@@ -58,9 +58,9 @@ export class ArtigosPopupComponent {
         this.postsAtivos = this.myPosts.filter((val) => val.tipoanuncio == 'Disponibilização de artigo' || val.tipoanuncio == 'dispArt')
 
         break;
-      case 'eventos':
+      case 'Evento':
 
-        this.postsAtivos = this.myPosts.filter((val) => val.tipoanuncio == 'Evento')
+      this.postsAtivos = this.data.evento.filter((val:any) => val.tipoanuncio == 'Evento' && val.id_user==this.data.post.id_user)
 
         break;
 

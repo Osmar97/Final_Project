@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PostsService {
 
-  //url='https://servidor-ushare.vercel.app'
+  // url='https://servidor-ushare.vercel.app'
   url='http://localhost:3000'
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class PostsService {
 
     return this.http.post<any>(url, body);
   }
-
+  
   
   ComentarAnuncio(comentario:any): Observable<any> {
     const url = `${this.url}/comentarios`;

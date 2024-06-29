@@ -51,9 +51,9 @@ export class PerfilComponent {
         this.postsAtivos = this.myPosts.filter((val) => val.tipoanuncio == 'Disponibilização de artigo' || val.tipoanuncio == 'dispArt')
 
         break;
-      case 'eventos':
+      case 'Evento':
 
-        this.postsAtivos = this.myPosts.filter((val) => val.tipoanuncio == 'Evento')
+        this.postsAtivos = this.data.evento.filter((val:any) => val.tipoanuncio == 'Evento' && val.id_user==this.data.post.id_user)
 
         break;
 
@@ -78,7 +78,7 @@ export class PerfilComponent {
   }
   getPosts() {
 
-    let anuncios$ = this.getServ.verAnunciosDoMunicipio(this.data.id_munic)
+    let anuncios$ = this.getServ.verAnunciosDoMunicipio(this.data.post.id_munic)
     anuncios$.subscribe(
       {
         next: (val) => {
@@ -95,7 +95,7 @@ export class PerfilComponent {
 
 
 
-                if (autor[0].id == this.data.idAutor) {
+                if (autor[0].id == this.data.post.idAutor) {
 
                   let nome: string = autor[0].nome;
                   let id: number = autor[0].id;
@@ -123,7 +123,7 @@ export class PerfilComponent {
 
                 console.log(this.posts)
 
-                this.myPosts = this.filterPosts(this.data.idAutor)
+                this.myPosts = this.filterPosts(this.data.post.idAutor)
                 this.selectOption(this.selectedOption)
                 }
 

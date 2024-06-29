@@ -11,7 +11,7 @@
             <p>Feed</p>
             <div class="underline"></div>
         </div>
-        <div class="friendsIcon"  (click)="openartg(posts)">
+        <div class="friendsIcon"  (click)="openartg(posts,events)">
             <fa-icon [icon]="faArtigo" class="iconP" ></fa-icon>
             <p >Meus artigos</p>
             <div class="underline"></div>
@@ -41,7 +41,7 @@
         <p (click)="setActiveSection('meusartigos-friends')"> Chat</p>
         <p (click)="setActiveSection('publicacoes')">  Feed</p>
         <p (click)="setActiveSection('eventos')"> Eventos</p>
-        <p (click)="openartg(posts)"> Meus Artigos</p>
+        <p (click)="openartg(posts,events)"> Meus Artigos</p>
         <a href="/aboutUs"> Sobre nós</a>
         <p > Logout</p>
     </div>
@@ -52,7 +52,7 @@
 
 
     <div #meusartigosfriends class="meusartigos-friends">
-        <div class="box" (click)="openartg(posts)">
+        <div class="box" (click)="openartg(posts,events)">
             <img src="assets/vector-icon.svg" class="iconPx"   />
             <h3 >Os meus artigos</h3>
         </div>
@@ -107,7 +107,7 @@
             <div class="post-container">
                  <div *ngFor="let post of posts" class="post">
                     <div class="post-header">
-                        <div (click)="openperfil(post)" class="conjunto">
+                        <div (click)="openperfil(post,events)" class="conjunto">
                             <div class="profile-photo">
                                 <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" >
                             </div>
@@ -127,7 +127,7 @@
                     <div class="line11"></div>
                     <div class="comment-sec">
 
-                        <div *ngIf="post.meuPost" (click)="verInteressados()" class="info"  >
+                        <div *ngIf="post.meuPost" (click)="verInteressados(post)" class="info"  >
                             <img src="assets/Inter.svg">
                             <p class="inter">Ver interações</p>
                         </div>
@@ -182,7 +182,47 @@
     </div>
 
     <div #eventos class="eventos">
-        <app-evento />
+        <div *ngFor="let event of events" class="event" >
+
+            <div class="post-header">
+        
+                <div class="org-photo">
+                    <img src="assets/ellipse-1-icon.svg">
+                </div>
+        
+                <div class="event-author">
+                    <p>{{event.nomeAutor}}</p>
+                    <p class="data">{{ event.datadepub | date:'dd.MM.yyyy' }}</p>
+                </div>
+        
+            </div>
+        
+        
+            <div class="line1"></div>
+        
+        
+            <p>{{event.descricao}}</p>
+            <div class="post-content">
+                <img width="100%" [src]="event.linkimagem" class="carpic">
+            </div>
+
+        
+        
+            <div class="line1"></div>
+        
+        
+            <div class="comment-sec">
+                <div (click)="contatarProprietario(event)" class="info">
+                    <img src="assets/vector-icon7.svg">
+                    <p>Mais Infomaçoes</p>
+                </div>
+                <div (click)="opencoment(event)" class="coment">
+                    <img src="assets/staroutline-icon6.svg">
+                    <p>Comentários</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
 
@@ -191,6 +231,6 @@
     </div>
 
     <div class="inter">
-        <app-interresados #interessados />
+        <app-interresados [post]="interess" #interessados />
     </div>
 </div>

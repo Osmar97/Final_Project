@@ -5,7 +5,7 @@
         <div class="texto-botaox">
             <div class="dono">
                 <img src="assets/ellipse-1-icon.svg">
-                <h2 class="perfil">{{data.nomeAutor}}</h2>
+                <h2 class="perfil">{{data.post.nomeAutor}}</h2>
             </div>
             <img (click)="close()" src="assets/fechar.svg" width="20px">
         </div>
@@ -27,7 +27,7 @@
                 <p class="alertas">Alertas</p>
             </div>
     
-            <div class="eventos" [class.active]="selectedOption === 'eventos'" (click)="selectOption('eventos')">
+            <div class="eventos" [class.active]="selectedOption === 'Evento'" (click)="selectOption('Evento')">
                 <img src="assets/ClipboardCheckOutline.svg" class="iconEventos" />
                 <p class="eventos">Eventos</p>
             </div>

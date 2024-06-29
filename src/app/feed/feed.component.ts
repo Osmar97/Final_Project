@@ -8,7 +8,6 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
-import { EventoComponent } from './evento/evento.component';
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatDialog } from '@angular/material/dialog';
 import { PopupPComponent } from './popup-p/popup-p.component';
@@ -32,17 +31,17 @@ import { GetsService } from '../servicos/gets.service';
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [FontAwesomeModule, EventoComponent, MatDialogModule, CommonModule, ChatboxComponent, ArtigosPopupComponent, InterresadosComponent, ComentariosComponent, SearchComponent, PerfilComponent],
+  imports: [FontAwesomeModule, MatDialogModule, CommonModule, ChatboxComponent, ArtigosPopupComponent, InterresadosComponent, ComentariosComponent, SearchComponent, PerfilComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss'
 })
 export class FeedComponent {
 
   isFeedActive: boolean = true;
-  chatParams: any={
+  chatParams: any = {
     id_user: 0,
     id_user2: 0,
-    nome_user2:''
+    nome_user2: ''
   };
   faPeopleGroup = faPeopleGroup;
   faRss = faRss;
@@ -54,6 +53,7 @@ export class FeedComponent {
   faArtigo = faClipboardList
   faHamb = faBars
   faAboutUs = faPeopleGroup;
+  anuncio=''
 
   dadosUtilizador: any = {
     id: '',
@@ -76,7 +76,9 @@ export class FeedComponent {
   @ViewChild('chatboxRef') chatboxRef!: ChatboxComponent;
 
   posts: any[] = []
+  events: any[] = []
   conexoes: any[] = []
+  interess: any[] = []
 
   activeSection: string = 'publicacoes';
 
@@ -116,6 +118,7 @@ export class FeedComponent {
         this.obterConexoes()
 
         this.getPosts()
+        this.getEventos()
       }
 
 
@@ -137,22 +140,41 @@ export class FeedComponent {
   }
 
 
-  verInteressados() {
-    (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
-    this.subbtn.closeAll();
+  verInteressados(post:any) {
+
+    let resp$:Observable<any>=this.getServ.obterInteressadosAnuncio(post.id);
+
+    resp$.subscribe({
+      next:(val)=>{
+
+        this.interess=val;
+
+        (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+    
+        this.subbtn.closeAll();
+       },
+      error:(err)=>{
+        (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+    
+        this.subbtn.closeAll();
+        console.error(err)
+      }
+    });
+ 
+
 
   }
 
-  obterConexoes(){
-    let conex$:Observable<any> = this.getServ.obterConexoes(this.dadosUtilizador.id)
+  obterConexoes() {
+    let conex$: Observable<any> = this.getServ.obterConexoes(this.dadosUtilizador.id)
 
     conex$.subscribe({
-      next:(conex)=>{
-        this.conexoes=conex;
+      next: (conex) => {
+        this.conexoes = conex;
         console.log(conex)
       },
 
-      error:(error)=>{
+      error: (error) => {
         console.error(error)
       }
 
@@ -234,6 +256,78 @@ export class FeedComponent {
   }
 
 
+  getEventos() {
+    let userdata = String(this.localStore.getItem('user'))
+    if (userdata) {
+
+      let data = JSON.parse(userdata)
+
+      console.log(data)
+      let anuncios$ = this.getServ.verEventosDoMunicipio(data.id_munic)
+      anuncios$.subscribe(
+        {
+          next: (val) => {
+
+            this.events = val
+            let i = 0;
+
+            for (let event of this.events) {
+
+              let autores$: Observable<any> = this.getServ.obterAutor(event.id_user)
+              autores$.subscribe({
+                next: (autor) => {
+
+                  let nome: string = autor[0].nome;
+                  let id: number = autor[0].id;
+                  let id_dist: number = autor[0].id_dist;
+                  let id_munic: number = autor[0].id_munic;
+                  let coordenadasmorada: string = autor[0].coordenadasmorada;
+                  let email: string = autor[0].email;
+                  let nif: string = autor[0].nif;
+                  let tipouser: string = autor[0].tipouser;
+
+
+                  this.events[i] = {
+                    ...this.events[i], nomeAutor: nome,
+                    meuId: this.dadosUtilizador.id,
+                    idAutor: id,
+                    id_distAutor: id_dist,
+                    id_municAutor: id_munic,
+                    coordenadasmoradaAutor: coordenadasmorada,
+                    emailAutor: email,
+                    nifAutor: nif,
+                    tipoUserAutor: tipouser,
+                    meuPost: this.dadosUtilizador.id == id
+
+                  }
+                  i++;
+
+
+                },
+
+                error: (err) => {
+                  console.error(err)
+                }
+              })
+
+            }
+
+
+            console.log(this.events, "kkkk")
+
+          },
+
+          error: (err) => {
+
+            console.log(err)
+
+          }
+        }
+      )
+    }
+  }
+
+
   displayAllSections() {
     this.meusArt.nativeElement.style.display = 'flex';
     this.pubs.nativeElement.style.display = 'block';
@@ -281,18 +375,18 @@ export class FeedComponent {
   }
 
   contatarProprietario(data: any) {
-  
+
     this.chatParams = {
       ...this.chatParams,
       id_user2: data.id_user,
-      nome_user2:data.nomeAutor 
+      nome_user2: data.nomeAutor
     }
 
     setTimeout(() => {
       this.chatboxRef.toggleChatbox()
 
     }, 100);
- 
+
 
   }
 
@@ -309,9 +403,9 @@ export class FeedComponent {
 
 
 
-  openperfil(post: any) {
+  openperfil(post: any, evento: any) {
     this.perfil.open(PerfilComponent, {
-      data: post
+      data: { post, evento }
     })
   }
 
@@ -325,9 +419,11 @@ export class FeedComponent {
     });
   }
 
-  openartg(post: any) {
+  openartg(post: any, evento: any) {
     this.artbtn.open(ArtigosPopupComponent, {
-      data: post
+      data: { post, evento },
+
+
     });
   }
 
