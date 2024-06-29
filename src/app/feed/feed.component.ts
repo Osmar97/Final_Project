@@ -39,7 +39,11 @@ import { GetsService } from '../servicos/gets.service';
 export class FeedComponent {
 
   isFeedActive: boolean = true;
-
+  chatParams: any={
+    id_user: 0,
+    id_user2: 0,
+    nome_user2:''
+  };
   faPeopleGroup = faPeopleGroup;
   faRss = faRss;
   faMagnifyingGlass = faMagnifyingGlass;
@@ -69,8 +73,10 @@ export class FeedComponent {
   @ViewChild('meusartigosfriends') meusArt!: ElementRef;
   @ViewChild('publicacoes') pubs!: ElementRef;
   @ViewChild('eventos') eventos!: ElementRef;
+  @ViewChild('chatboxRef') chatboxRef!: ChatboxComponent;
 
   posts: any[] = []
+  conexoes: any[] = []
 
   activeSection: string = 'publicacoes';
 
@@ -102,14 +108,23 @@ export class FeedComponent {
           tipouser: dados.tipouser
         }
 
+        this.chatParams = {
+          id_user: this.dadosUtilizador.id,
 
-        console.log(this.dadosUtilizador)
+        }
+
+        this.obterConexoes()
 
         this.getPosts()
       }
 
 
     }, 100);
+  }
+
+  logout() {
+    this.localStore.deleteCookies()
+    this.router.navigate(['login'])
   }
 
   @HostListener('window:resize', ['$event'])
@@ -128,6 +143,21 @@ export class FeedComponent {
 
   }
 
+  obterConexoes(){
+    let conex$:Observable<any> = this.getServ.obterConexoes(this.dadosUtilizador.id)
+
+    conex$.subscribe({
+      next:(conex)=>{
+        this.conexoes=conex;
+        console.log(conex)
+      },
+
+      error:(error)=>{
+        console.error(error)
+      }
+
+    })
+  }
 
   getPosts() {
     let userdata = String(this.localStore.getItem('user'))
@@ -165,7 +195,7 @@ export class FeedComponent {
 
                   this.posts[i] = {
                     ...this.posts[i], nomeAutor: nome,
-                    meuId:this.dadosUtilizador.id,
+                    meuId: this.dadosUtilizador.id,
                     idAutor: id,
                     id_distAutor: id_dist,
                     id_municAutor: id_munic,
@@ -250,6 +280,22 @@ export class FeedComponent {
     this.activeSection = section;
   }
 
+  contatarProprietario(data: any) {
+  
+    this.chatParams = {
+      ...this.chatParams,
+      id_user2: data.id_user,
+      nome_user2:data.nomeAutor 
+    }
+
+    setTimeout(() => {
+      this.chatboxRef.toggleChatbox()
+
+    }, 100);
+ 
+
+  }
+
 
   openNav() {
     this.sidenav.nativeElement.style.width = '250px';
@@ -263,8 +309,10 @@ export class FeedComponent {
 
 
 
-  openperfil() {
-    this.perfil.open(PerfilComponent)
+  openperfil(post: any) {
+    this.perfil.open(PerfilComponent, {
+      data: post
+    })
   }
 
   opensearch() {
@@ -273,13 +321,13 @@ export class FeedComponent {
 
   opencoment(post: any) {
     this.coment.open(ComentariosComponent, {
-      data:post
+      data: post
     });
   }
 
-  openartg(post:any) {
-    this.artbtn.open(ArtigosPopupComponent,{
-      data:post
+  openartg(post: any) {
+    this.artbtn.open(ArtigosPopupComponent, {
+      data: post
     });
   }
 

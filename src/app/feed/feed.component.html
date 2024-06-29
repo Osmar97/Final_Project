@@ -26,7 +26,7 @@
 
         <div class="Icons">
             <img src="assets/search-icon-icon.svg" alt="" class="IconS" (click)="opensearch()" />
-            <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="handleLogoutClick()" />
+            <img src="assets/logout-icon.svg" alt="" class="IconLg" (click)="logout()" />
         </div>
 
         <div class="profilePhoto">
@@ -61,163 +61,24 @@
             <div class="col-f">
                 <img src="assets/users-icon.svg" class="iconU" />
                 <h3>Conexões</h3>
-                <p>(nº)</p>
+                <p>({{conexoes.length}})</p>
             </div>
 
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
+                <div   class="nomeA" *ngFor="let conx of conexoes">
+                    <div (click)="contatarProprietario({nomeAutor:conx.nome, id_user:conx.id_user })" class="conjunto">
                         <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" >
                         </div>
                         <div class="post-author">
-                            <p class="nome">Name of the Person</p>
+                            <p class="nome">{{conx.nome}}</p>
                             <p class="status"> online</p>
                         </div>
                     </div>
                 </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
-                <div (click)="chatboxRef.toggleChatbox()" class="nomeA">
-                    <div class="conjunto">
-                        <div class="profile-photo">
-                            <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
-                        </div>
-                        <div class="post-author">
-                            <p class="nome">Name of the Person</p>
-                            <p class="status"> online</p>
-                        </div>
-                    </div>
-                </div>
+
+     
+
+
 
 
         </div>
@@ -246,12 +107,12 @@
             <div class="post-container">
                  <div *ngFor="let post of posts" class="post">
                     <div class="post-header">
-                        <div class="conjunto">
+                        <div (click)="openperfil(post)" class="conjunto">
                             <div class="profile-photo">
-                                <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" (click)="openperfil()">
+                                <img src="assets/ellipse-1-icon.svg" alt="Profile Photo" >
                             </div>
-                            <div class="post-author" (click)="openperfil()">
-                                <p (click)="openperfil()">{{ post.nomeAutor }}</p>
+                            <div class="post-author" >
+                                <p >{{ post.nomeAutor }}</p>
                                 <p class="data">{{ post.datadepub | date:'dd.MM.yyyy' }}</p>
                             </div>
                         </div>
@@ -273,7 +134,7 @@
 
                         <div *ngIf="!post.meuPost" class="info">
                             <img src="assets/vector-icon7.svg">
-                            <p (click)="chatboxRef.toggleChatbox()">Contatar proprietário</p>
+                            <p (click)="this.contatarProprietario(post)">Contatar proprietário</p>
                         </div>
                 
                         <div class="coment" (click)="opencoment(post)">
@@ -326,7 +187,7 @@
 
 
     <div class="chat">
-        <app-chatbox #chatboxRef />
+        <app-chatbox [chatParams]="chatParams" #chatboxRef />
     </div>
 
     <div class="inter">

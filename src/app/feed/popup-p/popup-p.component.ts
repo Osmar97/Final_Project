@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { PostsService } from '../../servicos/posts.service';
 import { MensagemSucessoService } from '../../servicos/mensagem-sucesso.service';
 import { LocalStorageService } from '../../servicos/local-storage.service';
+import { GetsService } from '../../servicos/gets.service';
 
 
 interface TipoPost {
@@ -64,10 +65,12 @@ export class PopupPComponent {
     { value: 'Disponibilização de artigo', viewValue: 'Disponibilização de artigo' },
   ];
 
+ 
+
   imageUrl: string | ArrayBuffer | null = null;
 
 
-  constructor(private upload: UploadService, private subbtn: MatDialog, private posts:PostsService, private msnSucesso:MensagemSucessoService,private localStore:LocalStorageService) {
+  constructor(private getS:GetsService,private upload: UploadService, private subbtn: MatDialog, private posts:PostsService, private msnSucesso:MensagemSucessoService,private localStore:LocalStorageService) {
 
   }
 
@@ -90,6 +93,10 @@ export class PopupPComponent {
         email: dados.email,
         nif: dados.nif,
         tipouser: dados.tipouser
+      }
+
+      if(this.dadosUtilizador.tipouser=="org-1"){
+        this.tipoPosts.push({ value: 'Evento', viewValue: 'Evento' })
       }
     }, 100);
   }

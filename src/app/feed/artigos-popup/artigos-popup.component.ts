@@ -124,7 +124,7 @@ export class ArtigosPopupComponent {
                   }
                   i++;
 
-                  this.myPosts = this.filterMyPosts(data.id)
+                  this.myPosts = this.filterPosts(data.id)
                   this.selectOption(this.selectedOption)
                 },
 
@@ -150,7 +150,7 @@ export class ArtigosPopupComponent {
   }
 
 
-  filterMyPosts(myid: any) {
+  filterPosts(myid: any) {
     return this.posts.filter((val) => val.idAutor == myid)
   }
 

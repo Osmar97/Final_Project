@@ -25,6 +25,17 @@ export class GetsService {
     const params = new HttpParams().set('id_anuncio', id_anuncio);
     return this.http.get<any>(this.url+'/comentarios', { params });
   }
+  
+  obterConexoes(id_user: any): Observable<any[]> {
+    const params = new HttpParams().set('id_user1', id_user);
+    return this.http.get<any>(this.url+'/conexoes', { params });
+  }
+  obterMensagens(id_user1: any, id_user2: any): Observable<any[]> {
+    let params = new HttpParams().set('id_user', id_user1);
+    params = params.set('id_user2', id_user2);
+
+    return this.http.get<any[]>(`${this.url}/mensagem`, { params });
+  }
 
 
 }

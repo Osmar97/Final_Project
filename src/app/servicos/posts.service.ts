@@ -15,7 +15,6 @@ export class PostsService {
     const url = `${this.url}/anuncios`;
     const body = anuncio;
 
-    console.log(body)
     return this.http.post<any>(url, body);
   }
 
@@ -24,7 +23,14 @@ export class PostsService {
     const url = `${this.url}/comentarios`;
     const body = comentario;
 
-    console.log(body)
+    return this.http.post<any>(url, body);
+  }
+
+
+  enviarMensagem(chatParams:any): Observable<any> {
+    const url = `${this.url}/mensagem`;
+    const body = chatParams;
+
     return this.http.post<any>(url, body);
   }
  

@@ -25,4 +25,8 @@ export class LocalStorageService {
     return this.cookieService.get(key);
   }
 
+  deleteCookies(){
+    this.cookieService.deleteAll()
+  }
+
 }
