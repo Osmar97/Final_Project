@@ -150,10 +150,10 @@ export class FeedComponent {
 
         this.interess = val;
         
-        this.interessadosComponent.fetchdata();
         setTimeout(() => {
+        this.interessadosComponent.fetchdata();
+      }, 100);
           (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
-        }, 100);
 
         this.subbtn.closeAll();
       },
@@ -383,7 +383,8 @@ export class FeedComponent {
     this.chatParams = {
       ...this.chatParams,
       id_user2: data.id_user,
-      nome_user2: data.nomeAutor
+      nome_user2: data.nomeAutor,
+      id_anuncio:data.id?data.id:-1
     }
 
     setTimeout(() => {

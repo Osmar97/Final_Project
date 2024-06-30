@@ -32,7 +32,8 @@ export class ChatboxComponent {
       let data={
         id_user: this.chatParams.id_user,
         id_user2: this.chatParams.id_user2,
-        mensagem: this.mensagem.nativeElement.value
+        mensagem: this.mensagem.nativeElement.value,
+        id_anuncio:this.chatParams.id_anuncio
       }
 
       let response$: Observable<any> = this.postServ.enviarMensagem(data)

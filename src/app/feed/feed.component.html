@@ -212,9 +212,14 @@
         
         
             <div class="comment-sec">
-                <div (click)="contatarProprietario(event)" class="info">
+                <div *ngIf="event.meuPost" (click)="verInteressados(event)" class="info"  >
+                    <img src="assets/Inter.svg">
+                    <p class="inter">Ver interações</p>
+                </div>
+
+                <div *ngIf="!event.meuPost" class="info">
                     <img src="assets/vector-icon7.svg">
-                    <p>Mais Infomaçoes</p>
+                    <p (click)="this.contatarProprietario(event)">Contatar proprietário</p>
                 </div>
                 <div (click)="opencoment(event)" class="coment">
                     <img src="assets/staroutline-icon6.svg">
