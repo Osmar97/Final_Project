@@ -38,7 +38,7 @@ export class LocationPermissionComponent {
   navegarFeed() {
     // Navigate to the new route programmatically
     navigator.geolocation.getCurrentPosition((position: GeolocationPosition) =>{
-      this.coordenadas=position.coords.latitude +', ' +position.coords.longitude;
+      this.coordenadas=position.coords.latitude.toFixed(10) +', ' +position.coords.longitude.toFixed(10);
       this.utilizador.coordenadasMorada=this.coordenadas;
  
       this.registrar$=this.authService.registerClient(this.utilizador)

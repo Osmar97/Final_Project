@@ -10,28 +10,28 @@ $borda-cor: #828282;
 $icone-cinza-cor: #AEAEAE;
 $circulo-cinza-cor: #D9D9D9;
 
-.search-popup{
+.search-popup {
     width: 750px;
     height: 600px;
     overflow-y: auto;
     padding: 10px;
 
-    .header{
+    .header {
 
         display: flex;
         align-items: center;
 
-        .titulo{
+        .titulo {
             justify-content: center;
             display: flex;
             margin: auto;
         }
 
-        .close{
+        .close {
             cursor: pointer;
         }
 
-     
+
     }
 
 
@@ -41,35 +41,256 @@ $circulo-cinza-cor: #D9D9D9;
         margin: 10px 0px;
     }
 
-    .pesquisa{
+    .pesquisa {
         display: flex;
         align-items: center;
         justify-content: center;
 
-        input{
+        gap:5px;
+
+        .IconS{
+            font-size: 18px;
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        input {
             width: 100%;
             padding-left: 10px;
             height: 50px;
             border-radius: 8px;
             border: 1px solid $borda-cor;
 
-            input:focus{
+            input:focus {
                 outline: none;
             }
         }
     }
 
-    .filters{
+    .filters {
         padding: 10px 0;
         justify-content: space-between;
         display: flex;
 
     }
 
-     
-        .post-container {
 
-            width: 100%;
+    .post-container {
+
+        width: 100%;
+
+
+        .post {
+            outline: solid 1px #ebebeb;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 15px;
+
+
+            .post-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                justify-content: space-between;
+
+                .conjunto {
+                    display: flex;
+
+                    .profile-photo {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        margin-right: 10px;
+
+
+                    }
+
+                    .post-author {
+                        p {
+                            margin: 0;
+                            font-weight: bold;
+
+                        }
+                    }
+
+                }
+
+
+                .data {
+                    color: #c0c5cf;
+                    font-size: 11px;
+                    font-weight: 600;
+                    font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+                        'Liberation Sans', sans-serif;
+                    padding: 0;
+                    margin-top: -13px;
+                }
+
+                .status {
+                    color: #52D997;
+                    display: flex;
+                    font-size: 11px;
+                }
+            }
+
+            .post-content {
+                width: 100%;
+                justify-content: center;
+                display: flex;
+                flex-direction: column;
+                align-content: center;
+                align-items: center;
+                justify-items: center;
+
+
+                .carpic {
+                    object-fit: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 16px;
+                    background-color: #d9d9d9;
+                }
+            }
+
+            .line10 {
+                max-width: 100%;
+                height: 0;
+                max-height: 100%;
+                border-bottom: solid 1px #d9d9d9;
+            }
+
+            p {
+                color: #505153;
+                font-size: 14px;
+                font-weight: 500;
+                font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+                    'Liberation Sans', sans-serif;
+            }
+
+            .descText {
+                padding-top: 10px;
+                padding-left: 5px;
+            }
+
+            .line11 {
+                max-width: 100%;
+                height: 0;
+                max-height: 100%;
+                border-bottom: solid 1px #d9d9d9;
+                padding-top: 5px;
+            }
+
+            .comment-sec {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                justify-content: space-around;
+                font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+                    'Liberation Sans', sans-serif;
+                padding: 5px;
+
+                .info {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    cursor: pointer;
+
+                    img {
+                        width: 20px;
+                        height: 23px;
+                    }
+                }
+
+                .coment {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+
+                    cursor: pointer;
+
+
+                    img {
+                        width: 25px;
+                        height: 23px;
+                    }
+                }
+
+                p {
+
+                    cursor: pointer;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+
+
+}
+
+@media (max-width:750px) {
+    .search-popup {
+        height: 100vh;
+        width: 100%;
+
+        .header {
+
+            display: flex;
+            align-items: center;
+
+            .titulo {
+                justify-content: center;
+                display: flex;
+                margin: auto;
+            }
+
+            .close {
+                cursor: pointer;
+            }
+
+
+        }
+
+
+        .line {
+            max-width: 100%;
+            border-bottom: solid 1px #d9d9d9;
+            margin: 10px 0px;
+        }
+
+        .pesquisa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+ 
+
+            input {
+                width: 100%;
+                padding-left: 10px;
+                height: 50px;
+                border-radius: 8px;
+                border: 1px solid $borda-cor;
+
+                input:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .filters {
+            padding: 10px 0;
+            justify-content: space-between;
+            display: flex;
+
+        }
+
+
+        .post-container {
 
 
             .post {
@@ -86,9 +307,9 @@ $circulo-cinza-cor: #D9D9D9;
                     margin-bottom: 10px;
                     justify-content: space-between;
 
-                    .conjunto{
+                    .conjunto {
                         display: flex;
-                        
+
                         .profile-photo {
                             width: 40px;
                             height: 40px;
@@ -98,7 +319,7 @@ $circulo-cinza-cor: #D9D9D9;
 
 
                         }
-                        
+
                         .post-author {
                             p {
                                 margin: 0;
@@ -106,27 +327,27 @@ $circulo-cinza-cor: #D9D9D9;
 
                             }
                         }
-                        
+
                     }
 
-                    
-                    .data{
+
+                    .data {
                         color: #c0c5cf;
                         font-size: 11px;
                         font-weight: 600;
                         font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                        'Liberation Sans', sans-serif;
+                            'Liberation Sans', sans-serif;
                         padding: 0;
                         margin-top: -13px;
                     }
 
-                    .status{
+                    .status {
                         color: #52D997;
                         display: flex;
                         font-size: 11px;
                     }
                 }
-                
+
                 .post-content {
                     width: 100%;
                     justify-content: center;
@@ -135,7 +356,7 @@ $circulo-cinza-cor: #D9D9D9;
                     align-content: center;
                     align-items: center;
                     justify-items: center;
-                
+
 
                     .carpic {
                         object-fit: cover;
@@ -146,6 +367,7 @@ $circulo-cinza-cor: #D9D9D9;
                         background-color: #d9d9d9;
                     }
                 }
+
                 .line10 {
                     max-width: 100%;
                     height: 0;
@@ -158,10 +380,10 @@ $circulo-cinza-cor: #D9D9D9;
                     font-size: 14px;
                     font-weight: 500;
                     font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                    'Liberation Sans', sans-serif;
+                        'Liberation Sans', sans-serif;
                 }
 
-                .descText{
+                .descText {
                     padding-top: 10px;
                     padding-left: 5px;
                 }
@@ -173,249 +395,43 @@ $circulo-cinza-cor: #D9D9D9;
                     border-bottom: solid 1px #d9d9d9;
                     padding-top: 5px;
                 }
-                .comment-sec{
+
+                .comment-sec {
                     display: flex;
                     gap: 5px;
                     align-items: center;
-                    justify-content: space-around;
+                    justify-items: center;
                     font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                    'Liberation Sans', sans-serif;
+                        'Liberation Sans', sans-serif;
                     padding: 5px;
 
-                    .info{
-                        display: flex;
-                        gap:10px;
-                        align-items: center;
+                    .info {
                         cursor: pointer;
-                        
-                        img{
-                            width: 20px;
-                            height: 23px;
-                        }
                     }
-                    
-                    .coment{
+
+                    .coment {
                         display: flex;
-                        gap:10px;
+                        gap: 10px;
                         align-items: center;
 
                         cursor: pointer;
 
-                        
-                        img{
+
+                        img {
                             width: 25px;
                             height: 23px;
                         }
                     }
 
-                    p{
-   
+                    p {
+
                         cursor: pointer;
                         margin: 0;
                     }
                 }
             }
         }
-    
 
-    
-}
-@media (max-width:750px) {
-    .search-popup{
-        height: 100vh;
-        width: 100%;
-    
-        .header{
-    
-            display: flex;
-            align-items: center;
-    
-            .titulo{
-                justify-content: center;
-                display: flex;
-                margin: auto;
-            }
-    
-            .close{
-                cursor: pointer;
-            }
-    
-         
-        }
-    
-    
-        .line {
-            max-width: 100%;
-            border-bottom: solid 1px #d9d9d9;
-            margin: 10px 0px;
-        }
-    
-        .pesquisa{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-    
-            input{
-                width: 100%;
-                padding-left: 10px;
-                height: 50px;
-                border-radius: 8px;
-                border: 1px solid $borda-cor;
-    
-                input:focus{
-                    outline: none;
-                }
-            }
-        }
-    
-        .filters{
-            padding: 10px 0;
-            justify-content: space-between;
-            display: flex;
-    
-        }
-    
-  
-            .post-container {
-    
-    
-                .post {
-                    outline: solid 1px #ebebeb;
-                    border-radius: 8px;
-                    background-color: #fff;
-                    padding: 10px;
-                    margin-bottom: 15px;
-    
-    
-                    .post-header {
-                        display: flex;
-                        align-items: center;
-                        margin-bottom: 10px;
-                        justify-content: space-between;
-    
-                        .conjunto{
-                            display: flex;
-                            
-                            .profile-photo {
-                                width: 40px;
-                                height: 40px;
-                                border-radius: 50%;
-                                overflow: hidden;
-                                margin-right: 10px;
-    
-    
-                            }
-                            
-                            .post-author {
-                                p {
-                                    margin: 0;
-                                    font-weight: bold;
-    
-                                }
-                            }
-                            
-                        }
-    
-                        
-                        .data{
-                            color: #c0c5cf;
-                            font-size: 11px;
-                            font-weight: 600;
-                            font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                            'Liberation Sans', sans-serif;
-                            padding: 0;
-                            margin-top: -13px;
-                        }
-    
-                        .status{
-                            color: #52D997;
-                            display: flex;
-                            font-size: 11px;
-                        }
-                    }
-                    
-                    .post-content {
-                        width: 100%;
-                        justify-content: center;
-                        display: flex;
-                        flex-direction: column;
-                        align-content: center;
-                        align-items: center;
-                        justify-items: center;
-                    
-    
-                        .carpic {
-                            object-fit: cover;
-                            background-position: center;
-                            background-repeat: no-repeat;
-                            background-size: cover;
-                            border-radius: 16px;
-                            background-color: #d9d9d9;
-                        }
-                    }
-                    .line10 {
-                        max-width: 100%;
-                        height: 0;
-                        max-height: 100%;
-                        border-bottom: solid 1px #d9d9d9;
-                    }
-    
-                    p {
-                        color: #505153;
-                        font-size: 14px;
-                        font-weight: 500;
-                        font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                        'Liberation Sans', sans-serif;
-                    }
-    
-                    .descText{
-                        padding-top: 10px;
-                        padding-left: 5px;
-                    }
-    
-                    .line11 {
-                        max-width: 100%;
-                        height: 0;
-                        max-height: 100%;
-                        border-bottom: solid 1px #d9d9d9;
-                        padding-top: 5px;
-                    }
-                    .comment-sec{
-                        display: flex;
-                        gap: 5px;
-                        align-items: center;
-                        justify-items: center;
-                        font-family: Montserrat, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-                        'Liberation Sans', sans-serif;
-                        padding: 5px;
-    
-                        .info{
-                            cursor: pointer;
-                        }
-                
-                        .coment{
-                            display: flex;
-                            gap:10px;
-                            align-items: center;
-    
-                            cursor: pointer;
-    
-                            
-                            img{
-                                width: 25px;
-                                height: 23px;
-                            }
-                        }
-    
-                        p{
-       
-                            cursor: pointer;
-                            margin: 0;
-                        }
-                    }
-                }
-            }
-    
-        
+
     }
 }
