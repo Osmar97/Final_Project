@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GetsService {
-  // url='https://servidor-ushare.vercel.app'
+  url='https://servidor-ushare.vercel.app'
 
-  url='http://localhost:3000'
+  // url='http://localhost:3000'
   constructor(private http: HttpClient) { }
   
   verAnunciosDoMunicipio(id_munic: any): Observable<any[]> {
