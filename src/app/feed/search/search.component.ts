@@ -1,11 +1,11 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ComentariosComponent } from '../comentarios/comentarios.component'
 import { GetsService } from '../../servicos/gets.service';
 import { LocalStorageService } from '../../servicos/local-storage.service';
@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit {
   dadosUtilizador: any = {}
   todosOsPosts: any[] = []
   autores: any[] = []
+  postsAutor: any[] = []
 
   postsFiltrados: any[] = []
   @ViewChild('pesquisa') textoPesquisa!: ElementRef;
@@ -75,7 +76,13 @@ export class SearchComponent implements OnInit {
   searchQuery: string = "";
 
 
-  constructor(private mensagemErro: MensagemErroService, private localStore: LocalStorageService, private fecha: MatDialog, private comentarios: MatDialog, private getS: GetsService) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA,) public data: any,
+  private mensagemErro: MensagemErroService, 
+  private localStore: LocalStorageService, 
+  private fecha: MatDialog, 
+  private comentarios: MatDialog, 
+  private getS: GetsService) {
   }
 
   ngOnInit(): void {
@@ -127,7 +134,6 @@ export class SearchComponent implements OnInit {
     posts$.subscribe({
       next: (val) => {
         this.todosOsPosts = val;
-        console.log(val)
       },
       error: (err) => {
         console.error(err)
@@ -178,6 +184,7 @@ export class SearchComponent implements OnInit {
             if (condition){
 
               this.postsFiltrados.push({...autor[0],...element})
+              this.postsAutor=this.arrayFiltradosComAutor()
             }
 
 
@@ -225,16 +232,31 @@ export class SearchComponent implements OnInit {
   }
 
 
-
-
   openChat() {
     (document.getElementById('sideChatBox') as HTMLElement).style.display = 'block';
     this.fecha.closeAll();
 
   }
-  openComentarios() {
-    this.fecha.closeAll();
-    this.comentarios.open(ComentariosComponent)
+ 
 
+  openComentarios(post:any) {
+    this.fecha.closeAll();
+    let i:number=-1;
+    this.comentarios.open(ComentariosComponent,{
+
+      data: post
+    })
+  }
+
+  arrayFiltradosComAutor(){
+    let i:number=-1;
+    return this.data.posts.filter((val:any)=>{
+ 
+      if(this.postsFiltrados[i+1] && val.id==this.postsFiltrados[i+1].id)
+        i++;
+
+
+      return val.id==this.postsFiltrados[i].id
+    })
   }
 }

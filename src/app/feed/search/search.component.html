@@ -36,14 +36,14 @@
         </div>
 
         <div class="post-container">
-            <div *ngFor="let post of postsFiltrados" class="post">
+            <div *ngFor="let post of postsAutor" class="post">
                 <div class="post-header">
                     <div class="conjunto">
                         <div class="profile-photo">
                             <img src="assets/ellipse-1-icon.svg" alt="Profile Photo">
                         </div>
                         <div class="post-author">
-                            <p>{{post.nome}}</p>
+                            <p>{{post.nomeAutor}}</p>
                             <p class="data">{{ post.datadepub | date:'dd.MM.yyyy' }}</p>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         <p>Contatar proprietário</p>
                     </div>
                     
-                    <div (click)="openComentarios()" class="coment">
+                    <div (click)="openComentarios(post)" class="coment">
                         <img src="assets/staroutline-icon6.svg">
                         <p >Comentários</p>
                     </div>

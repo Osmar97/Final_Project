@@ -26,6 +26,7 @@ import { stringify } from 'querystring';
 import { PostsService } from '../servicos/posts.service';
 import { Observable } from 'rxjs';
 import { GetsService } from '../servicos/gets.service';
+import { resolve } from 'path';
 
 
 @Component({
@@ -149,11 +150,11 @@ export class FeedComponent {
       next: (val) => {
 
         this.interess = val;
-        
+
         setTimeout(() => {
-        this.interessadosComponent.fetchdata();
-      }, 100);
-          (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+          this.interessadosComponent.fetchdata();
+        }, 100);
+        (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
 
         this.subbtn.closeAll();
       },
@@ -185,78 +186,77 @@ export class FeedComponent {
     })
   }
 
-  getPosts() {
-    let userdata = String(this.localStore.getItem('user'))
-    if (userdata) {
-
-      let data = JSON.parse(userdata)
-
-      console.log(data)
-      let anuncios$ = this.getServ.verAnunciosDoMunicipio(data.id_munic)
-      anuncios$.subscribe(
-        {
-          next: (val) => {
-
-            this.posts = val
-            let i = 0;
-
-            for (let post of this.posts) {
-
-              let autores$: Observable<any> = this.getServ.obterAutor(post.id_user)
-              autores$.subscribe({
-                next: (autor) => {
-
-                  console.log(autor)
+  async getPosts() {
 
 
-                  let nome: string = autor[0].nome;
-                  let id: number = autor[0].id;
-                  let id_dist: number = autor[0].id_dist;
-                  let id_munic: number = autor[0].id_munic;
-                  let coordenadasmorada: string = autor[0].coordenadasmorada;
-                  let email: string = autor[0].email;
-                  let nif: string = autor[0].nif;
-                  let tipouser: string = autor[0].tipouser;
+      let anuncios = await this.obterAnunciosMunic()
+      this.posts = anuncios
+      let i = 0;
 
 
-                  this.posts[i] = {
-                    ...this.posts[i], nomeAutor: nome,
-                    meuId: this.dadosUtilizador.id,
-                    idAutor: id,
-                    id_distAutor: id_dist,
-                    id_municAutor: id_munic,
-                    coordenadasmoradaAutor: coordenadasmorada,
-                    emailAutor: email,
-                    nifAutor: nif,
-                    tipoUserAutor: tipouser,
-                    meuPost: this.dadosUtilizador.id == id
 
-                  }
-                  i++;
+      for (let post of this.posts) {
 
-                  console.log(this.posts)
+        let autor = await this.obterAutor(post.id_user)
 
-                },
+            let nome: string = autor[0].nome;
+            let id: number = autor[0].id;
+            let id_dist: number = autor[0].id_dist;
+            let id_munic: number = autor[0].id_munic;
+            let coordenadasmorada: string = autor[0].coordenadasmorada;
+            let email: string = autor[0].email;
+            let nif: string = autor[0].nif;
+            let tipouser: string = autor[0].tipouser;
 
-                error: (err) => {
-                  console.error(err)
-                }
-              })
+
+            this.posts[i] = {
+              ...this.posts[i], nomeAutor: nome,
+              meuId: this.dadosUtilizador.id,
+              id_distAutor: id_dist,
+              id_municAutor: id_munic,
+              coordenadasmoradaAutor: coordenadasmorada,
+              emailAutor: email,
+              nifAutor: nif,
+              tipoUserAutor: tipouser,
+              meuPost: this.dadosUtilizador.id == id
 
             }
 
-            console.log(val)
+            i++;
 
-          },
 
-          error: (err) => {
-
-            console.log(err)
-
-          }
-        }
-      )
+  
+      
     }
+  }
+
+  async obterAnunciosMunic(){
+
+    return new Promise<any>(
+      (resolve,reject)=>{
+         let result: Observable<any>=this.getServ.verAnunciosDoMunicipio(this.dadosUtilizador.id_munic)
+         result.forEach((e)=>{
+           resolve(e)
+         })
+         
+
+      },
+    
+    )
+  }
+  async obterAutor(idAutor:number){
+
+    return new Promise<any>(
+      (resolve,reject)=>{
+        let result: Observable<any>= this.getServ.obterAutor(idAutor)
+         result.forEach((e)=>{
+           resolve(e)
+         })
+         
+
+      },
+    
+    )
   }
 
 
@@ -384,7 +384,7 @@ export class FeedComponent {
       ...this.chatParams,
       id_user2: data.id_user,
       nome_user2: data.nomeAutor,
-      id_anuncio:data.id?data.id:-1
+      id_anuncio: data.id ? data.id : -1
     }
 
     setTimeout(() => {
@@ -415,7 +415,9 @@ export class FeedComponent {
   }
 
   opensearch() {
-    this.search.open(SearchComponent);
+    this.search.open(SearchComponent, {
+      data: { posts:this.posts }
+    })
   }
 
   opencoment(post: any) {
@@ -435,30 +437,7 @@ export class FeedComponent {
   opensubbtn() {
     this.subbtn.open(PopupPComponent);
   }
-
-  handleSendClick() {
-    console.log('send icon clicked');
-  }
-
-  handleAttachClick() {
-    console.log('Attach icon clicked');
-  }
-
-  handleSearchClick() {
-
-    console.log('Search icon clicked');
-  }
-
-  handleChatClick() {
-
-    console.log('Chat icon clicked');
-  }
-
-  handleLogoutClick() {
-
-    console.log('Logout icon clicked');
-  }
-
+ 
   toggleFeed() {
     this.isFeedActive = true;
     console.log("Feed is active");
