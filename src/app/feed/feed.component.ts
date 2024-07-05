@@ -346,7 +346,6 @@ export class FeedComponent {
 
     this.activeSection = activeSec;
 
-    console.log(activeSec)
 
     switch (this.activeSection) {
 

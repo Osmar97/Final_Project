@@ -53,7 +53,7 @@ export class PerfilComponent {
         break;
       case 'Evento':
 
-        this.postsAtivos = this.data.evento.filter((val:any) => val.tipoanuncio == 'Evento' && val.id_user==this.data.post.id_user)
+        this.postsAtivos = this.data.evento.filter((val: any) => val.tipoanuncio == 'Evento' && val.id_user == this.data.post.id_user)
 
         break;
 
@@ -76,77 +76,85 @@ export class PerfilComponent {
     this.getPosts()
     console.log(this.data)
   }
-  getPosts() {
+  async getPosts() {
 
-    let anuncios$ = this.getServ.verAnunciosDoMunicipio(this.data.post.id_munic)
-    anuncios$.subscribe(
-      {
-        next: (val) => {
-
-          this.posts = val
-          let i = 0;
-
-          for (let post of this.posts) {
+    let anuncios = await this.obterAnunciosMunic()
 
 
-            let autores$: Observable<any> = this.getServ.obterAutor(post.id_user)
-            autores$.subscribe({
-              next: (autor) => {
+    this.posts = anuncios
+    let i = 0;
+
+    for (let post of this.posts) {
 
 
-
-                if (autor[0].id == this.data.post.idAutor) {
-
-                  let nome: string = autor[0].nome;
-                  let id: number = autor[0].id;
-                  let id_dist: number = autor[0].id_dist;
-                  let id_munic: number = autor[0].id_munic;
-                  let coordenadasmorada: string = autor[0].coordenadasmorada;
-                  let email: string = autor[0].email;
-                  let nif: string = autor[0].nif;
-                
-
-                let tipouser: string = autor[0].tipouser;
-
-                  this.posts[i] = {
-                    ...this.posts[i],
-                    nomeAutor: nome,
-                    idAutor: id,
-                    id_distAutor: id_dist,
-                    id_municAutor: id_munic,
-                    coordenadasmoradaAutor: coordenadasmorada,
-                    emailAutor: email,
-                    nifAutor: nif,
-                    tipoUserAutor: tipouser,
-                  }
-                i++;
-
-                console.log(this.posts)
-
-                this.myPosts = this.filterPosts(this.data.post.idAutor)
-                this.selectOption(this.selectedOption)
-                }
-
-              },
-
-              error: (err) => {
-                console.error(err)
-              }
-            })
-
-          }
+      let autor= await this.obterAutor(post.id_user)
+   
 
 
+            let nome: string = autor[0].nome;
+            let id: number = autor[0].id;
+            let id_dist: number = autor[0].id_dist;
+            let id_munic: number = autor[0].id_munic;
+            let coordenadasmorada: string = autor[0].coordenadasmorada;
+            let email: string = autor[0].email;
+            let nif: string = autor[0].nif;
 
 
-        },
+            let tipouser: string = autor[0].tipouser;
 
-        error: (err) => {
+            this.posts[i] = {
+              ...this.posts[i],
+              nomeAutor: nome,
+              idAutor: id,
+              id_distAutor: id_dist,
+              id_municAutor: id_munic,
+              coordenadasmoradaAutor: coordenadasmorada,
+              emailAutor: email,
+              nifAutor: nif,
+              tipoUserAutor: tipouser,
+            }
+            i++;
 
-          console.log(err)
+ 
 
-        }
-      }
+ 
+
+    }
+
+
+    this.myPosts = this.filterPosts(this.data.post.id_user)
+    console.log(this.myPosts)
+    console.log(this.data.post.id_user)
+    this.selectOption(this.selectedOption)
+
+  }
+
+  async obterAnunciosMunic() {
+
+    return new Promise<any>(
+      (resolve, reject) => {
+        let result: Observable<any> = this.getServ.verAnunciosDoMunicipio(this.data.post.id_munic)
+        result.forEach((e) => {
+          resolve(e)
+        })
+
+
+      },
+
+    )
+  }
+  async obterAutor(idAutor: number) {
+
+    return new Promise<any>(
+      (resolve, reject) => {
+        let result: Observable<any> = this.getServ.obterAutor(idAutor)
+        result.forEach((e) => {
+          resolve(e)
+        })
+
+
+      },
+
     )
   }
 
