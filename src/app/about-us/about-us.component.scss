@@ -156,6 +156,10 @@ $circulo-cinza-cor: #D9D9D9;
         align-items: center;
         width: 50%;
 
+        .profilePhoto{
+            font-weight: 600;
+        }
+
         .Icons {
 
             .IconS,
@@ -166,6 +170,8 @@ $circulo-cinza-cor: #D9D9D9;
                 cursor: pointer;
             }
         }
+
+         
 
         .iconHamb {
             display: none;

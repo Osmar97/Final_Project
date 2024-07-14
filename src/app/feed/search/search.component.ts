@@ -71,18 +71,18 @@ export class SearchComponent implements OnInit {
 
 
 
-  
+
 
   searchQuery: string = "";
 
 
   constructor(
     @Inject(MAT_DIALOG_DATA,) public data: any,
-  private mensagemErro: MensagemErroService, 
-  private localStore: LocalStorageService, 
-  private fecha: MatDialog, 
-  private comentarios: MatDialog, 
-  private getS: GetsService) {
+    private mensagemErro: MensagemErroService,
+    private localStore: LocalStorageService,
+    private fecha: MatDialog,
+    private comentarios: MatDialog,
+    private getS: GetsService) {
   }
 
   ngOnInit(): void {
@@ -142,13 +142,41 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    
+
     this.filtrarPosts()
- 
+
   }
 
-   
 
+
+  async obterAnunciosMunic() {
+
+    return new Promise<any>(
+      (resolve, reject) => {
+        let result: Observable<any> = this.getS.verAnunciosDoMunicipio(this.dadosUtilizador.id_munic)
+        result.forEach((e) => {
+          resolve(e)
+        })
+
+
+      },
+
+    )
+  }
+  async obterAutor(idAutor: number) {
+
+    return new Promise<any>(
+      (resolve, reject) => {
+        let result: Observable<any> = this.getS.obterAutor(idAutor)
+        result.forEach((e) => {
+          resolve(e)
+        })
+
+
+      },
+
+    )
+  }
 
   filtrarPosts() {
 
@@ -160,44 +188,36 @@ export class SearchComponent implements OnInit {
 
       const mylatitude: number = Number(coords[0])
       const mylongitude: number = Number(coords[1])
-      this.postsFiltrados=[]
+      this.postsFiltrados = []
 
-      this.todosOsPosts.forEach((element) => {
-        let autor$ = this.getS.obterAutor(element.id_user)
-        autor$.subscribe({
-          next: (autor) => {
-
-            let coords: string[] = autor[0].coordenadasmorada.split(',')
-
-            const latitude: number = Number(coords[0])
-            const longitude: number = Number(coords[1])
-
-            console.log(this.calculateDistance({ latitude: mylatitude, longitude: mylongitude }, { latitude, longitude }) )
-
-            const condition: boolean = (autor[0].nome.includes(txt) || element.titulo.includes(txt) || element.descricao.includes(txt)) &&
-              this.calculateDistance({ latitude: mylatitude, longitude: mylongitude }, { latitude, longitude }) <= this.distance.value &&
-              this.tipoAnuncio.value == element.tipoanuncio
-
-              console.log(condition)
+      this.todosOsPosts.forEach(async (element) => {
+        let autor = await this.obterAutor(element.id_user)
 
 
-            if (condition){
+        let coords: string[] = autor[0].coordenadasmorada.split(',')
 
-              this.postsFiltrados.push({...autor[0],...element})
-              this.postsAutor=this.arrayFiltradosComAutor()
-            }
+        const latitude: number = Number(coords[0])
+        const longitude: number = Number(coords[1])
+
+
+        const condition: boolean = (autor[0].nome.includes(txt) || element.titulo.includes(txt) || element.descricao.includes(txt)) &&
+          this.calculateDistance({ latitude: mylatitude, longitude: mylongitude }, { latitude, longitude }) <= this.distance.value &&
+          this.tipoAnuncio.value == element.tipoanuncio
+
+
+
+        if (condition) {
+
+          this.postsFiltrados.push({ ...autor[0], ...element })
+          this.postsAutor = this.arrayFiltradosComAutor()
+        }
 
 
 
 
-          },
 
-          error: (err) => {
-            console.error(err)
-          }
-        })
       })
- 
+
 
 
     } else {
@@ -237,26 +257,28 @@ export class SearchComponent implements OnInit {
     this.fecha.closeAll();
 
   }
- 
 
-  openComentarios(post:any) {
+
+  openComentarios(post: any) {
     this.fecha.closeAll();
-    let i:number=-1;
-    this.comentarios.open(ComentariosComponent,{
+    let i: number = -1;
+    this.comentarios.open(ComentariosComponent, {
 
       data: post
     })
   }
 
-  arrayFiltradosComAutor(){
-    let i:number=-1;
-    return this.data.posts.filter((val:any)=>{
- 
-      if(this.postsFiltrados[i+1] && val.id==this.postsFiltrados[i+1].id)
+  arrayFiltradosComAutor() {
+    let i: number = 0;
+
+    console.log(this.data.posts, this.postsFiltrados)
+    return this.data.posts.filter((val: any) => {
+
+      if (this.postsFiltrados[i + 1] && val.id == this.postsFiltrados[i + 1].id)
         i++;
 
 
-      return val.id==this.postsFiltrados[i].id
+      return val.id == this.postsFiltrados[i].id
     })
   }
 }

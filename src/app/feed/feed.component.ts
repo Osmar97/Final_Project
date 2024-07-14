@@ -99,7 +99,6 @@ export class FeedComponent {
 
 
         let dados: any = JSON.parse(userdata)
-        console.log(dados)
 
         this.dadosUtilizador = {
           nome: dados.nome,

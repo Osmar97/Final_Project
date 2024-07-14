@@ -11,6 +11,7 @@ import { ArtigosPopupComponent } from '../feed/artigos-popup/artigos-popup.compo
 import { PopupPComponent } from '../feed/popup-p/popup-p.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../servicos/local-storage.service';
 
 @Component({
   selector: 'app-about-us',
@@ -24,15 +25,34 @@ export class AboutUsComponent {
   faArtigo = faClipboardList;
   faHamb = faBars;
   faAboutUs = faPeopleGroup;
+  dadosUtilizador={
+    nome:''
+  }
 
-  constructor(private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
+  constructor(private localStore: LocalStorageService, private router: Router,private subbtn: MatDialog, private artbtn: MatDialog, private coment: MatDialog, private search: MatDialog, private perfil: MatDialog) {
 
+  }
+
+  ngAfterViewInit(){
+    let userdata: string = this.localStore.getItem('user')!;
+
+    if (userdata) {
+
+      let dados: any = JSON.parse(userdata)
+
+      this.dadosUtilizador = {
+        nome: dados.nome,
+
+      }
+    }
   }
 
 
   openFeed(){
     this.router.navigate(['/feed'])
   }
+
+
   handleSendClick() {
     console.log('send icon clicked');
   }

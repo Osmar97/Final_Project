@@ -60,7 +60,7 @@ export class ArtigosPopupComponent {
         break;
       case 'Evento':
 
-      this.postsAtivos = this.data.evento.filter((val:any) => val.tipoanuncio == 'Evento' && val.id_user==this.data.post.id_user)
+        this.postsAtivos = this.data.evento.filter((val: any) => val.tipoanuncio == 'Evento' && val.id_user == this.data.post.id_user)
 
         break;
 
@@ -75,97 +75,104 @@ export class ArtigosPopupComponent {
 
   }
 
-  getPosts() {
+  async getPosts() {
     let userdata = String(this.localStore.getItem('user'))
     if (userdata) {
 
       let data = JSON.parse(userdata)
-
-      console.log(data)
-      let anuncios$ = this.getServ.verAnunciosDoMunicipio(data.id_munic)
-      anuncios$.subscribe(
-        {
-          next: (val) => {
-
-            this.posts = val
-            let i = 0;
-
-            for (let post of this.posts) {
-
-              let autores$: Observable<any> = this.getServ.obterAutor(post.id_user)
-              autores$.subscribe({
-                next: (autor) => {
-
-                  console.log(autor)
+      let anuncios = await this.obterAnunciosMunic(data.id_munic)
 
 
-                  let nome: string = autor[0].nome;
-                  let id: number = autor[0].id;
-                  let id_dist: number = autor[0].id_dist;
-                  let id_munic: number = autor[0].id_munic;
-                  let coordenadasmorada: string = autor[0].coordenadasmorada;
-                  let email: string = autor[0].email;
-                  let nif: string = autor[0].nif;
-                  let tipouser: string = autor[0].tipouser;
+      this.posts = anuncios
+      let i = 0;
+
+      for (let post of this.posts) {
+
+        let autor = await this.obterAutor(post.id_user)
 
 
-                  this.posts[i] = {
-                    ...this.posts[i], nomeAutor: nome,
-                    meuId: data.id,
-                    idAutor: id,
-                    id_distAutor: id_dist,
-                    id_municAutor: id_munic,
-                    coordenadasmoradaAutor: coordenadasmorada,
-                    emailAutor: email,
-                    nifAutor: nif,
-                    tipoUserAutor: tipouser,
-                    meuPost: data.id == id
+            let nome: string = autor[0].nome;
+            let id: number = autor[0].id;
+            let id_dist: number = autor[0].id_dist;
+            let id_munic: number = autor[0].id_munic;
+            let coordenadasmorada: string = autor[0].coordenadasmorada;
+            let email: string = autor[0].email;
+            let nif: string = autor[0].nif;
+            let tipouser: string = autor[0].tipouser;
 
-                  }
-                  i++;
 
-                  this.myPosts = this.filterPosts(data.id)
-                  this.selectOption(this.selectedOption)
-                },
-
-                error: (err) => {
-                  console.error(err)
-                }
-              })
+            this.posts[i] = {
+              ...this.posts[i], nomeAutor: nome,
+              meuId: data.id,
+              idAutor: id,
+              id_distAutor: id_dist,
+              id_municAutor: id_munic,
+              coordenadasmoradaAutor: coordenadasmorada,
+              emailAutor: email,
+              nifAutor: nif,
+              tipoUserAutor: tipouser,
+              meuPost: data.id == id
 
             }
+            i++;
 
-            console.log(val)
+            this.myPosts = this.filterPosts(data.id)
 
-          },
 
-          error: (err) => {
+            this.selectOption(this.selectedOption)
+     
+      }
 
-            console.log(err)
+      console.log(this.posts,"33")
 
-          }
-        }
-      )
-    }
+
+}
   }
+  async obterAnunciosMunic(id: any) {
+
+  return new Promise<any>(
+    (resolve, reject) => {
+      let result: Observable<any> = this.getServ.verAnunciosDoMunicipio(id)
+      result.forEach((e) => {
+        resolve(e)
+      })
 
 
-  filterPosts(myid: any) {
-    return this.posts.filter((val) => val.idAutor == myid)
-  }
+    },
+
+  )
+}
+  async obterAutor(idAutor: number) {
+
+  return new Promise<any>(
+    (resolve, reject) => {
+      let result: Observable<any> = this.getServ.obterAutor(idAutor)
+      result.forEach((e) => {
+        resolve(e)
+      })
 
 
-  verInteressados() {
-    (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
-    this.fecha.closeAll();
+    },
 
-  }
+  )
+}
 
-  openComentarios(post:any) {
-    this.fecha.closeAll();
-    this.comentarios.open(ComentariosComponent,{
-      data:post
-    })
-  }
+filterPosts(myid: any) {
+  return this.posts.filter((val) => val.idAutor == myid)
+}
+
+
+verInteressados() {
+  (document.getElementById('interessados-popup') as HTMLElement).style.display = 'block';
+  this.fecha.closeAll();
+
+}
+
+openComentarios(post: any) {
+  this.fecha.closeAll();
+  this.comentarios.open(ComentariosComponent, {
+    data: post
+  })
+}
 
 }
